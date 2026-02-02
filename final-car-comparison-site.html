@@ -404,21 +404,121 @@
     </div>
 
     <script>
-        // Load the verified car database
-        let carDatabase = {};
-        
-        // Fetch the database
-        fetch('verified-car-database-40-vehicles.json')
-            .then(response => response.json())
-            .then(data => {
-                carDatabase = data;
-                initializePage();
-            })
-            .catch(error => {
-                console.error('Error loading database:', error);
-                // Fallback: use inline data if fetch fails
-                initializePage();
-            });
+        // Embedded car database - all data included in this file!
+        const carDatabase = {
+  "2024-honda-accord-sport": {
+    "name": "Honda Accord",
+    "year": "2024",
+    "trim": "Sport Hybrid",
+    "msrp": "$34,045",
+    "brand": "Honda",
+    "category": "Midsize Sedan",
+    "specs": {
+      "engine": {
+        "type": "Gas/Electric I-4 Hybrid",
+        "power": "204 hp",
+        "torque": "134 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "FWD",
+        "transmission": "CVT",
+        "fuelType": "Gasoline + Electric"
+      },
+      "performance": {
+        "acceleration": "6.5 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "450+ miles",
+        "efficiency": "46 city / 41 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "195.7 in",
+        "width": "73.3 in",
+        "height": "57.1 in",
+        "wheelbase": "111.4 in",
+        "groundClearance": "5.5 in",
+        "dragCoefficient": "0.27 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,450 lbs",
+        "grossWeight": "4,450 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "16.7 cu ft",
+        "fuelCapacity": "12.8 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/40R19",
+        "rearTires": "235/40R19",
+        "wheelSize": "19-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "12.3-inch touchscreen",
+        "safety": "Honda Sensing",
+        "interior": "Leather seats",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-toyota-camry-se": {
+    "name": "Toyota Camry",
+    "year": "2024",
+    "trim": "SE",
+    "msrp": "$27,960",
+    "brand": "Toyota",
+    "category": "Midsize Sedan",
+    "specs": {
+      "engine": {
+        "type": "Inline-4",
+        "power": "203 hp",
+        "torque": "184 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "FWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.8 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "520 miles",
+        "efficiency": "28 city / 39 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "192.7 in",
+        "width": "72.4 in",
+        "height": "56.9 in",
+        "wheelbase": "111.2 in",
+        "groundClearance": "5.7 in",
+        "dragCoefficient": "0.28 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,310 lbs",
+        "grossWeight": "4,441 lbs",
+        "weightDistribution": "59/41 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "15.1 cu ft",
+        "fuelCapacity": "15.8 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/45R18",
+        "rearTires": "235/45R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (F), Solid (R)"
+      },
+      "features": {
+        "infotainment": "9-inch touchscreen",
+        "safety": "Toyota Safety Sense 2.5+",
+        "interior": "Sport fabric seats",
+        "exterior": "Sport grille"
+      }
+    }
+  }
+};
 
         let selectedCars = [];
 
@@ -540,10 +640,8 @@
                 .trim();
         }
 
-        // Initialize on page load (fallback if fetch fails)
-        if (Object.keys(carDatabase).length === 0) {
-            setTimeout(initializePage, 100);
-        }
+        // Initialize on page load
+        initializePage();
     </script>
 </body>
 </html>
