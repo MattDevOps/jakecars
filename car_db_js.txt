@@ -1,0 +1,2311 @@
+const carDatabase = {
+  "2024-honda-accord-sport": {
+    "name": "Honda Accord",
+    "year": "2024",
+    "trim": "Sport Hybrid",
+    "msrp": "$34,045",
+    "brand": "Honda",
+    "category": "Midsize Sedan",
+    "specs": {
+      "engine": {
+        "type": "Gas/Electric I-4 Hybrid",
+        "power": "204 hp",
+        "torque": "134 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "FWD",
+        "transmission": "CVT",
+        "fuelType": "Gasoline + Electric"
+      },
+      "performance": {
+        "acceleration": "6.5 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "450+ miles",
+        "efficiency": "46 city / 41 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "195.7 in",
+        "width": "73.3 in",
+        "height": "57.1 in",
+        "wheelbase": "111.4 in",
+        "groundClearance": "5.5 in",
+        "dragCoefficient": "0.27 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,450 lbs",
+        "grossWeight": "4,450 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "16.7 cu ft",
+        "fuelCapacity": "12.8 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/40R19",
+        "rearTires": "235/40R19",
+        "wheelSize": "19-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "12.3-inch touchscreen",
+        "safety": "Honda Sensing",
+        "interior": "Leather seats",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-toyota-camry-se": {
+    "name": "Toyota Camry",
+    "year": "2024",
+    "trim": "SE",
+    "msrp": "$27,960",
+    "brand": "Toyota",
+    "category": "Midsize Sedan",
+    "specs": {
+      "engine": {
+        "type": "Inline-4",
+        "power": "203 hp",
+        "torque": "184 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "FWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.8 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "520 miles",
+        "efficiency": "28 city / 39 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "192.7 in",
+        "width": "72.4 in",
+        "height": "56.9 in",
+        "wheelbase": "111.2 in",
+        "groundClearance": "5.7 in",
+        "dragCoefficient": "0.28 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,310 lbs",
+        "grossWeight": "4,441 lbs",
+        "weightDistribution": "59/41 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "15.1 cu ft",
+        "fuelCapacity": "15.8 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/45R18",
+        "rearTires": "235/45R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (F), Solid (R)"
+      },
+      "features": {
+        "infotainment": "9-inch touchscreen",
+        "safety": "Toyota Safety Sense 2.5+",
+        "interior": "Sport fabric seats",
+        "exterior": "Sport grille"
+      }
+    }
+  },
+  "2024-nissan-altima-sr": {
+    "name": "Nissan Altima",
+    "year": "2024",
+    "trim": "SR",
+    "msrp": "$29,560",
+    "brand": "Nissan",
+    "category": "Midsize Sedan",
+    "specs": {
+      "engine": {
+        "type": "Inline-4",
+        "power": "188 hp",
+        "torque": "180 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "FWD",
+        "transmission": "CVT",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.6 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "510 miles",
+        "efficiency": "27 city / 39 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "192.9 in",
+        "width": "72.9 in",
+        "height": "56.9 in",
+        "wheelbase": "111.2 in",
+        "groundClearance": "5.5 in",
+        "dragCoefficient": "0.26 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,315 lbs",
+        "grossWeight": "4,380 lbs",
+        "weightDistribution": "61/39 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "15.4 cu ft",
+        "fuelCapacity": "16.2 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/40R19",
+        "rearTires": "235/40R19",
+        "wheelSize": "19-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8-inch touchscreen",
+        "safety": "Nissan Safety Shield 360",
+        "interior": "Sport cloth seats",
+        "exterior": "Rear spoiler"
+      }
+    }
+  },
+  "2024-hyundai-sonata-sel": {
+    "name": "Hyundai Sonata",
+    "year": "2024",
+    "trim": "SEL",
+    "msrp": "$27,950",
+    "brand": "Hyundai",
+    "category": "Midsize Sedan",
+    "specs": {
+      "engine": {
+        "type": "Inline-4",
+        "power": "191 hp",
+        "torque": "181 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "FWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.4 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "540 miles",
+        "efficiency": "27 city / 37 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "192.9 in",
+        "width": "73.2 in",
+        "height": "56.9 in",
+        "wheelbase": "111.8 in",
+        "groundClearance": "5.3 in",
+        "dragCoefficient": "0.27 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,247 lbs",
+        "grossWeight": "4,299 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "16.0 cu ft",
+        "fuelCapacity": "18.5 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/45R18",
+        "rearTires": "235/45R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8-inch touchscreen",
+        "safety": "Hyundai SmartSense",
+        "interior": "Cloth seats",
+        "exterior": "Cascading grille"
+      }
+    }
+  },
+  "2024-kia-k5-gtline": {
+    "name": "Kia K5",
+    "year": "2024",
+    "trim": "GT-Line",
+    "msrp": "$30,990",
+    "brand": "Kia",
+    "category": "Midsize Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "180 hp",
+        "torque": "195 lb-ft",
+        "displacement": "1.6L",
+        "configuration": "FWD",
+        "transmission": "8-Speed Dual-Clutch",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.4 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "460 miles",
+        "efficiency": "27 city / 37 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "193.1 in",
+        "width": "73.2 in",
+        "height": "57.3 in",
+        "wheelbase": "112.2 in",
+        "groundClearance": "5.7 in",
+        "dragCoefficient": "0.27 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,346 lbs",
+        "grossWeight": "4,330 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "16.0 cu ft",
+        "fuelCapacity": "14.8 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/45R18",
+        "rearTires": "235/45R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "12.3-inch touchscreen",
+        "safety": "Forward Collision-Avoidance",
+        "interior": "Sport cloth seats",
+        "exterior": "LED lights"
+      }
+    }
+  },
+  "2024-volkswagen-jetta-sel": {
+    "name": "Volkswagen Jetta",
+    "year": "2024",
+    "trim": "SEL",
+    "msrp": "$28,995",
+    "brand": "Volkswagen",
+    "category": "Compact Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "158 hp",
+        "torque": "184 lb-ft",
+        "displacement": "1.5L",
+        "configuration": "FWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.7 sec (0-60 mph)",
+        "topSpeed": "127 mph",
+        "range": "460 miles",
+        "efficiency": "29 city / 39 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "185.1 in",
+        "width": "70.8 in",
+        "height": "57.7 in",
+        "wheelbase": "105.7 in",
+        "groundClearance": "5.6 in",
+        "dragCoefficient": "0.27 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,099 lbs",
+        "grossWeight": "4,085 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "14.1 cu ft",
+        "fuelCapacity": "13.2 gallons"
+      },
+      "wheels": {
+        "frontTires": "205/55R17",
+        "rearTires": "205/55R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8-inch touchscreen",
+        "safety": "IQ.DRIVE",
+        "interior": "V-Tex leatherette",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-acura-integra-aspec": {
+    "name": "Acura Integra",
+    "year": "2024",
+    "trim": "A-Spec",
+    "msrp": "$38,800",
+    "brand": "Acura",
+    "category": "Compact Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "200 hp",
+        "torque": "192 lb-ft",
+        "displacement": "1.5L",
+        "configuration": "FWD",
+        "transmission": "CVT",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "7.2 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "420 miles",
+        "efficiency": "29 city / 36 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "192.2 in",
+        "width": "72.8 in",
+        "height": "55.4 in",
+        "wheelbase": "107.7 in",
+        "groundClearance": "5.5 in",
+        "dragCoefficient": "0.28 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,120 lbs",
+        "grossWeight": "4,100 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "15.1 cu ft",
+        "fuelCapacity": "12.4 gallons"
+      },
+      "wheels": {
+        "frontTires": "215/50R18",
+        "rearTires": "215/50R18",
+        "wheelSize": "18-inch Gloss Black",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.2-inch touchscreen",
+        "safety": "AcuraWatch",
+        "interior": "Leather-trimmed sport seats",
+        "exterior": "LED Jewel Eye headlights"
+      }
+    }
+  },
+  "2024-bmw-330i-xdrive": {
+    "name": "BMW 330i",
+    "year": "2024",
+    "trim": "xDrive",
+    "msrp": "$45,800",
+    "brand": "BMW",
+    "category": "Luxury Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "255 hp",
+        "torque": "295 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "5.3 sec (0-60 mph)",
+        "topSpeed": "155 mph (limited)",
+        "range": "420 miles",
+        "efficiency": "27 city / 36 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "185.7 in",
+        "width": "71.9 in",
+        "height": "56.8 in",
+        "wheelbase": "112.2 in",
+        "groundClearance": "5.4 in",
+        "dragCoefficient": "0.26 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,761 lbs",
+        "grossWeight": "4,916 lbs",
+        "weightDistribution": "50/50 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "17.0 cu ft",
+        "fuelCapacity": "15.6 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/45R18",
+        "rearTires": "225/45R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.25-inch display, iDrive 7",
+        "safety": "Active Driving Assistant",
+        "interior": "SensaTec upholstery",
+        "exterior": "Adaptive LED lights"
+      }
+    }
+  },
+  "2024-mercedes-c300-4matic": {
+    "name": "Mercedes-Benz C300",
+    "year": "2024",
+    "trim": "4MATIC",
+    "msrp": "$47,400",
+    "brand": "Mercedes-Benz",
+    "category": "Luxury Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4 Mild Hybrid",
+        "power": "255 hp",
+        "torque": "295 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "9-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "5.7 sec (0-60 mph)",
+        "topSpeed": "155 mph (limited)",
+        "range": "410 miles",
+        "efficiency": "25 city / 34 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "187.7 in",
+        "width": "71.7 in",
+        "height": "56.7 in",
+        "wheelbase": "112.8 in",
+        "groundClearance": "4.3 in",
+        "dragCoefficient": "0.24 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,902 lbs",
+        "grossWeight": "4,960 lbs",
+        "weightDistribution": "52/48 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "12.6 cu ft",
+        "fuelCapacity": "17.4 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/45R18",
+        "rearTires": "225/45R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "11.9-inch portrait touchscreen, MBUX",
+        "safety": "Active Brake Assist",
+        "interior": "MB-Tex upholstery",
+        "exterior": "Digital LED headlights"
+      }
+    }
+  },
+  "2024-audi-a4-quattro": {
+    "name": "Audi A4",
+    "year": "2024",
+    "trim": "Premium quattro",
+    "msrp": "$43,800",
+    "brand": "Audi",
+    "category": "Luxury Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "201 hp",
+        "torque": "236 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD (quattro)",
+        "transmission": "7-Speed Dual-Clutch",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "6.0 sec (0-60 mph)",
+        "topSpeed": "130 mph (limited)",
+        "range": "450 miles",
+        "efficiency": "25 city / 34 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "187.5 in",
+        "width": "72.7 in",
+        "height": "56.2 in",
+        "wheelbase": "111.0 in",
+        "groundClearance": "5.1 in",
+        "dragCoefficient": "0.27 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,858 lbs",
+        "grossWeight": "4,960 lbs",
+        "weightDistribution": "54/46 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "13.0 cu ft",
+        "fuelCapacity": "15.3 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/50R17",
+        "rearTires": "225/50R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.1-inch touchscreen, MMI",
+        "safety": "Audi pre sense front",
+        "interior": "MB-Tex/leather upholstery",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-lexus-es350": {
+    "name": "Lexus ES 350",
+    "year": "2024",
+    "trim": "Base",
+    "msrp": "$44,950",
+    "brand": "Lexus",
+    "category": "Luxury Sedan",
+    "specs": {
+      "engine": {
+        "type": "V-6",
+        "power": "302 hp",
+        "torque": "267 lb-ft",
+        "displacement": "3.5L",
+        "configuration": "FWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "6.6 sec (0-60 mph)",
+        "topSpeed": "131 mph",
+        "range": "500 miles",
+        "efficiency": "22 city / 32 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "195.9 in",
+        "width": "73.4 in",
+        "height": "57.1 in",
+        "wheelbase": "113.0 in",
+        "groundClearance": "5.7 in",
+        "dragCoefficient": "0.27 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,704 lbs",
+        "grossWeight": "4,795 lbs",
+        "weightDistribution": "59/41 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "16.7 cu ft",
+        "fuelCapacity": "15.9 gallons"
+      },
+      "wheels": {
+        "frontTires": "215/55R17",
+        "rearTires": "215/55R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "12.3-inch touchscreen",
+        "safety": "Lexus Safety System+ 3.0",
+        "interior": "NuLuxe upholstery",
+        "exterior": "LED triple-beam headlights"
+      }
+    }
+  },
+  "2024-cadillac-ct5-luxury": {
+    "name": "Cadillac CT5",
+    "year": "2024",
+    "trim": "Luxury AWD",
+    "msrp": "$44,890",
+    "brand": "Cadillac",
+    "category": "Luxury Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "237 hp",
+        "torque": "258 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "10-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "6.8 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "430 miles",
+        "efficiency": "22 city / 30 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "193.8 in",
+        "width": "73.9 in",
+        "height": "57.2 in",
+        "wheelbase": "116.0 in",
+        "groundClearance": "4.6 in",
+        "dragCoefficient": "0.28 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,875 lbs",
+        "grossWeight": "4,980 lbs",
+        "weightDistribution": "53/47 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "11.9 cu ft",
+        "fuelCapacity": "17.0 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/50R18",
+        "rearTires": "225/50R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10-inch touchscreen",
+        "safety": "Automatic Emergency Braking",
+        "interior": "Leather seats",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-genesis-g70-awd": {
+    "name": "Genesis G70",
+    "year": "2024",
+    "trim": "2.0T AWD",
+    "msrp": "$42,245",
+    "brand": "Genesis",
+    "category": "Luxury Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "300 hp",
+        "torque": "311 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "5.1 sec (0-60 mph)",
+        "topSpeed": "149 mph",
+        "range": "380 miles",
+        "efficiency": "20 city / 28 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "183.5 in",
+        "width": "73.4 in",
+        "height": "55.9 in",
+        "wheelbase": "111.6 in",
+        "groundClearance": "5.4 in",
+        "dragCoefficient": "0.28 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,912 lbs",
+        "grossWeight": "4,850 lbs",
+        "weightDistribution": "52/48 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "10.5 cu ft",
+        "fuelCapacity": "15.9 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/45R18",
+        "rearTires": "225/45R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.25-inch touchscreen",
+        "safety": "Forward Collision-Avoidance",
+        "interior": "Nappa leather seats",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-alfaromeo-giulia-ti": {
+    "name": "Alfa Romeo Giulia",
+    "year": "2024",
+    "trim": "Ti AWD",
+    "msrp": "$47,195",
+    "brand": "Alfa Romeo",
+    "category": "Luxury Sport Sedan",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "280 hp",
+        "torque": "306 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "5.1 sec (0-60 mph)",
+        "topSpeed": "149 mph",
+        "range": "390 miles",
+        "efficiency": "22 city / 31 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "182.6 in",
+        "width": "73.7 in",
+        "height": "56.5 in",
+        "wheelbase": "111.0 in",
+        "groundClearance": "4.7 in",
+        "dragCoefficient": "0.27 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,880 lbs",
+        "grossWeight": "4,915 lbs",
+        "weightDistribution": "50/50 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "13.0 cu ft",
+        "fuelCapacity": "15.5 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/45R18",
+        "rearTires": "225/45R18",
+        "wheelSize": "18-inch",
+        "brakes": "Brembo ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8.8-inch touchscreen",
+        "safety": "Forward Collision Warning Plus",
+        "interior": "Premium leather",
+        "exterior": "Active Aero Splitter"
+      }
+    }
+  },
+  "2024-honda-crv-ex": {
+    "name": "Honda CR-V",
+    "year": "2024",
+    "trim": "EX",
+    "msrp": "$33,250",
+    "brand": "Honda",
+    "category": "Compact SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "190 hp",
+        "torque": "179 lb-ft",
+        "displacement": "1.5L",
+        "configuration": "FWD",
+        "transmission": "CVT",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "8.3 sec (0-60 mph)",
+        "topSpeed": "120 mph",
+        "range": "450 miles",
+        "efficiency": "27 city / 32 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "184.8 in",
+        "width": "73.5 in",
+        "height": "66.6 in",
+        "wheelbase": "106.3 in",
+        "groundClearance": "8.2 in",
+        "dragCoefficient": "0.33 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,470 lbs",
+        "grossWeight": "4,564 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "76.5 cu ft (rear seats folded)",
+        "fuelCapacity": "14.0 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/60R18",
+        "rearTires": "235/60R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "9-inch touchscreen",
+        "safety": "Honda Sensing",
+        "interior": "Cloth seats",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-toyota-rav4-xle": {
+    "name": "Toyota RAV4",
+    "year": "2024",
+    "trim": "XLE",
+    "msrp": "$31,575",
+    "brand": "Toyota",
+    "category": "Compact SUV",
+    "specs": {
+      "engine": {
+        "type": "Inline-4",
+        "power": "203 hp",
+        "torque": "184 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "AWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "8.1 sec (0-60 mph)",
+        "topSpeed": "118 mph",
+        "range": "470 miles",
+        "efficiency": "27 city / 35 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "180.9 in",
+        "width": "73.0 in",
+        "height": "67.0 in",
+        "wheelbase": "105.9 in",
+        "groundClearance": "8.6 in",
+        "dragCoefficient": "0.33 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,605 lbs",
+        "grossWeight": "4,685 lbs",
+        "weightDistribution": "58/42 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "69.8 cu ft (rear seats folded)",
+        "fuelCapacity": "14.5 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/65R17",
+        "rearTires": "225/65R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8-inch touchscreen",
+        "safety": "Toyota Safety Sense 2.5+",
+        "interior": "SofTex seats",
+        "exterior": "Power liftgate"
+      }
+    }
+  },
+  "2024-mazda-cx5-touring": {
+    "name": "Mazda CX-5",
+    "year": "2024",
+    "trim": "Touring",
+    "msrp": "$30,725",
+    "brand": "Mazda",
+    "category": "Compact SUV",
+    "specs": {
+      "engine": {
+        "type": "SKYACTIV I-4",
+        "power": "187 hp",
+        "torque": "186 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "AWD",
+        "transmission": "6-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "8.7 sec (0-60 mph)",
+        "topSpeed": "120 mph",
+        "range": "460 miles",
+        "efficiency": "25 city / 31 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "179.1 in",
+        "width": "72.5 in",
+        "height": "65.3 in",
+        "wheelbase": "106.2 in",
+        "groundClearance": "8.6 in",
+        "dragCoefficient": "0.33 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,655 lbs",
+        "grossWeight": "4,740 lbs",
+        "weightDistribution": "58/42 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "59.6 cu ft (rear seats folded)",
+        "fuelCapacity": "15.3 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/65R17",
+        "rearTires": "225/65R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.25-inch display",
+        "safety": "i-Activsense safety",
+        "interior": "Leatherette seats",
+        "exterior": "Signature LED lights"
+      }
+    }
+  },
+  "2024-hyundai-tucson-sel": {
+    "name": "Hyundai Tucson",
+    "year": "2024",
+    "trim": "SEL",
+    "msrp": "$29,150",
+    "brand": "Hyundai",
+    "category": "Compact SUV",
+    "specs": {
+      "engine": {
+        "type": "Inline-4",
+        "power": "187 hp",
+        "torque": "178 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "FWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "8.9 sec (0-60 mph)",
+        "topSpeed": "118 mph",
+        "range": "480 miles",
+        "efficiency": "26 city / 33 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "182.3 in",
+        "width": "73.4 in",
+        "height": "65.6 in",
+        "wheelbase": "108.5 in",
+        "groundClearance": "8.3 in",
+        "dragCoefficient": "0.32 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,494 lbs",
+        "grossWeight": "4,598 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "74.8 cu ft (rear seats folded)",
+        "fuelCapacity": "14.3 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/60R18",
+        "rearTires": "235/60R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8-inch touchscreen",
+        "safety": "Hyundai SmartSense",
+        "interior": "Cloth seats",
+        "exterior": "Parametric LED lights"
+      }
+    }
+  },
+  "2024-subaru-outback-premium": {
+    "name": "Subaru Outback",
+    "year": "2024",
+    "trim": "Premium",
+    "msrp": "$30,895",
+    "brand": "Subaru",
+    "category": "Midsize Wagon/SUV",
+    "specs": {
+      "engine": {
+        "type": "Boxer-4",
+        "power": "182 hp",
+        "torque": "176 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "AWD",
+        "transmission": "CVT",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "8.7 sec (0-60 mph)",
+        "topSpeed": "118 mph",
+        "range": "520 miles",
+        "efficiency": "26 city / 33 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "191.3 in",
+        "width": "73.0 in",
+        "height": "66.1 in",
+        "wheelbase": "108.1 in",
+        "groundClearance": "8.7 in",
+        "dragCoefficient": "0.32 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,671 lbs",
+        "grossWeight": "4,960 lbs",
+        "weightDistribution": "58/42 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "75.7 cu ft (rear seats folded)",
+        "fuelCapacity": "18.5 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/65R17",
+        "rearTires": "225/65R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "11.6-inch touchscreen, STARLINK",
+        "safety": "EyeSight Driver Assist",
+        "interior": "Water-repellent cloth",
+        "exterior": "Roof rails"
+      }
+    }
+  },
+  "2024-jeep-grandcherokee-limited": {
+    "name": "Jeep Grand Cherokee",
+    "year": "2024",
+    "trim": "Limited 4x4",
+    "msrp": "$47,255",
+    "brand": "Jeep",
+    "category": "Midsize SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "270 hp",
+        "torque": "295 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "4WD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.3 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "440 miles",
+        "efficiency": "21 city / 28 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "193.5 in",
+        "width": "77.5 in",
+        "height": "69.4 in",
+        "wheelbase": "116.7 in",
+        "groundClearance": "8.6 in",
+        "dragCoefficient": "0.36 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,721 lbs",
+        "grossWeight": "6,250 lbs",
+        "weightDistribution": "53/47 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "70.8 cu ft (rear seats folded)",
+        "fuelCapacity": "19.0 gallons",
+        "towingCapacity": "6,200 lbs"
+      },
+      "wheels": {
+        "frontTires": "265/60R18",
+        "rearTires": "265/60R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.1-inch Uconnect",
+        "safety": "Advanced brake assist",
+        "interior": "Nappa leather",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-dodge-durango-sxt": {
+    "name": "Dodge Durango",
+    "year": "2024",
+    "trim": "SXT AWD",
+    "msrp": "$45,270",
+    "brand": "Dodge",
+    "category": "Midsize SUV",
+    "specs": {
+      "engine": {
+        "type": "V-6",
+        "power": "293 hp",
+        "torque": "260 lb-ft",
+        "displacement": "3.6L",
+        "configuration": "AWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.0 sec (0-60 mph)",
+        "topSpeed": "120 mph",
+        "range": "500 miles",
+        "efficiency": "19 city / 26 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "200.8 in",
+        "width": "75.8 in",
+        "height": "70.9 in",
+        "wheelbase": "119.8 in",
+        "groundClearance": "8.1 in",
+        "dragCoefficient": "0.39 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,663 lbs",
+        "grossWeight": "6,500 lbs",
+        "weightDistribution": "54/46 F/R"
+      },
+      "capacity": {
+        "seating": "7 passengers",
+        "cargoSpace": "84.5 cu ft (3rd row folded)",
+        "fuelCapacity": "24.6 gallons",
+        "towingCapacity": "6,200 lbs"
+      },
+      "wheels": {
+        "frontTires": "265/60R18",
+        "rearTires": "265/60R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.1-inch Uconnect",
+        "safety": "Forward Collision Warning",
+        "interior": "Cloth seats, 3rd-row",
+        "exterior": "LED taillamps"
+      }
+    }
+  },
+  "2024-gmc-acadia-slt": {
+    "name": "GMC Acadia",
+    "year": "2024",
+    "trim": "SLT AWD",
+    "msrp": "$43,500",
+    "brand": "GMC",
+    "category": "Midsize SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "228 hp",
+        "torque": "258 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "9-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.8 sec (0-60 mph)",
+        "topSpeed": "120 mph",
+        "range": "450 miles",
+        "efficiency": "21 city / 27 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "193.4 in",
+        "width": "75.4 in",
+        "height": "66.8 in",
+        "wheelbase": "112.5 in",
+        "groundClearance": "7.2 in",
+        "dragCoefficient": "0.35 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,150 lbs",
+        "grossWeight": "5,700 lbs",
+        "weightDistribution": "55/45 F/R"
+      },
+      "capacity": {
+        "seating": "7 passengers",
+        "cargoSpace": "79.0 cu ft (rear seats folded)",
+        "fuelCapacity": "19.4 gallons",
+        "towingCapacity": "4,000 lbs"
+      },
+      "wheels": {
+        "frontTires": "235/65R18",
+        "rearTires": "235/65R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "11.3-inch touchscreen",
+        "safety": "Rear Cross Traffic Alert",
+        "interior": "Leather-appointed seats",
+        "exterior": "LED headlamps"
+      }
+    }
+  },
+  "2024-buick-enclave-essence": {
+    "name": "Buick Enclave",
+    "year": "2024",
+    "trim": "Essence AWD",
+    "msrp": "$48,900",
+    "brand": "Buick",
+    "category": "Midsize SUV",
+    "specs": {
+      "engine": {
+        "type": "V-6",
+        "power": "310 hp",
+        "torque": "266 lb-ft",
+        "displacement": "3.6L",
+        "configuration": "AWD",
+        "transmission": "9-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "6.6 sec (0-60 mph)",
+        "topSpeed": "125 mph",
+        "range": "450 miles",
+        "efficiency": "17 city / 24 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "204.3 in",
+        "width": "78.9 in",
+        "height": "70.7 in",
+        "wheelbase": "120.9 in",
+        "groundClearance": "7.2 in",
+        "dragCoefficient": "0.36 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,362 lbs",
+        "grossWeight": "6,160 lbs",
+        "weightDistribution": "56/44 F/R"
+      },
+      "capacity": {
+        "seating": "7 passengers",
+        "cargoSpace": "97.6 cu ft (rear seats folded)",
+        "fuelCapacity": "22.0 gallons",
+        "towingCapacity": "5,000 lbs"
+      },
+      "wheels": {
+        "frontTires": "255/55R20",
+        "rearTires": "255/55R20",
+        "wheelSize": "20-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.2-inch touchscreen",
+        "safety": "Automatic Emergency Braking",
+        "interior": "Perforated leather",
+        "exterior": "LED headlamps"
+      }
+    }
+  },
+  "2024-lincoln-nautilus-reserve": {
+    "name": "Lincoln Nautilus",
+    "year": "2024",
+    "trim": "Reserve AWD",
+    "msrp": "$55,815",
+    "brand": "Lincoln",
+    "category": "Midsize Luxury SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "250 hp",
+        "torque": "280 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "7.2 sec (0-60 mph)",
+        "topSpeed": "125 mph",
+        "range": "400 miles",
+        "efficiency": "21 city / 27 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "190.9 in",
+        "width": "75.8 in",
+        "height": "66.7 in",
+        "wheelbase": "112.2 in",
+        "groundClearance": "7.9 in",
+        "dragCoefficient": "0.33 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,388 lbs",
+        "grossWeight": "5,722 lbs",
+        "weightDistribution": "54/46 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "68.8 cu ft (rear seats folded)",
+        "fuelCapacity": "17.7 gallons"
+      },
+      "wheels": {
+        "frontTires": "245/50R20",
+        "rearTires": "245/50R20",
+        "wheelSize": "20-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "13.2-inch touchscreen",
+        "safety": "Lincoln Co-Pilot360 Plus",
+        "interior": "Leather-trimmed",
+        "exterior": "Adaptive LED headlamps"
+      }
+    }
+  },
+  "2024-infiniti-qx50-luxe": {
+    "name": "Infiniti QX50",
+    "year": "2024",
+    "trim": "LUXE AWD",
+    "msrp": "$44,050",
+    "brand": "Infiniti",
+    "category": "Compact Luxury SUV",
+    "specs": {
+      "engine": {
+        "type": "VC-Turbo I-4",
+        "power": "268 hp",
+        "torque": "280 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "CVT",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "6.3 sec (0-60 mph)",
+        "topSpeed": "130 mph",
+        "range": "410 miles",
+        "efficiency": "22 city / 28 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "184.8 in",
+        "width": "74.8 in",
+        "height": "65.2 in",
+        "wheelbase": "110.2 in",
+        "groundClearance": "6.9 in",
+        "dragCoefficient": "0.32 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,957 lbs",
+        "grossWeight": "5,160 lbs",
+        "weightDistribution": "58/42 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "65.1 cu ft (rear seats folded)",
+        "fuelCapacity": "17.0 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/55R19",
+        "rearTires": "235/55R19",
+        "wheelSize": "19-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8-inch touchscreen, InTouch",
+        "safety": "ProPILOT Assist",
+        "interior": "Leatherette seats",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-volvo-xc60-core": {
+    "name": "Volvo XC60",
+    "year": "2024",
+    "trim": "Core AWD",
+    "msrp": "$47,850",
+    "brand": "Volvo",
+    "category": "Compact Luxury SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4 Mild Hybrid",
+        "power": "247 hp",
+        "torque": "258 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "6.4 sec (0-60 mph)",
+        "topSpeed": "112 mph (limited)",
+        "range": "420 miles",
+        "efficiency": "22 city / 29 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "184.6 in",
+        "width": "74.4 in",
+        "height": "65.9 in",
+        "wheelbase": "112.8 in",
+        "groundClearance": "8.4 in",
+        "dragCoefficient": "0.32 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,345 lbs",
+        "grossWeight": "5,599 lbs",
+        "weightDistribution": "58/42 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "63.3 cu ft (rear seats folded)",
+        "fuelCapacity": "18.8 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/60R18",
+        "rearTires": "235/60R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "9-inch touchscreen",
+        "safety": "City Safety, Pilot Assist",
+        "interior": "Premium textile",
+        "exterior": "Thor's Hammer LED headlights"
+      }
+    }
+  },
+  "2024-porsche-macan-base": {
+    "name": "Porsche Macan",
+    "year": "2024",
+    "trim": "Base",
+    "msrp": "$62,900",
+    "brand": "Porsche",
+    "category": "Luxury Compact SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "261 hp",
+        "torque": "295 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "7-Speed PDK",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "6.2 sec (0-60 mph)",
+        "topSpeed": "144 mph",
+        "range": "380 miles",
+        "efficiency": "19 city / 23 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "184.3 in",
+        "width": "76.3 in",
+        "height": "63.7 in",
+        "wheelbase": "110.5 in",
+        "groundClearance": "7.7 in",
+        "dragCoefficient": "0.35 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,123 lbs",
+        "grossWeight": "5,291 lbs",
+        "weightDistribution": "52/48 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "52.9 cu ft (rear seats folded)",
+        "fuelCapacity": "16.9 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/60R18",
+        "rearTires": "255/55R18",
+        "wheelSize": "18/19-inch Staggered",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.9-inch PCM touchscreen",
+        "safety": "Lane Keep Assist",
+        "interior": "Leather seats",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-landrover-discovery-sport-p250": {
+    "name": "Land Rover Discovery Sport",
+    "year": "2024",
+    "trim": "P250 S",
+    "msrp": "$50,475",
+    "brand": "Land Rover",
+    "category": "Compact Luxury SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4 Mild Hybrid",
+        "power": "246 hp",
+        "torque": "269 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "9-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "7.7 sec (0-60 mph)",
+        "topSpeed": "124 mph",
+        "range": "400 miles",
+        "efficiency": "20 city / 25 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "180.1 in",
+        "width": "79.0 in",
+        "height": "68.2 in",
+        "wheelbase": "108.9 in",
+        "groundClearance": "8.3 in",
+        "dragCoefficient": "0.35 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,222 lbs",
+        "grossWeight": "5,512 lbs",
+        "weightDistribution": "54/46 F/R"
+      },
+      "capacity": {
+        "seating": "5+2 passengers",
+        "cargoSpace": "77.2 cu ft (all seats folded)",
+        "fuelCapacity": "16.6 gallons",
+        "towingCapacity": "4,400 lbs"
+      },
+      "wheels": {
+        "frontTires": "235/60R18",
+        "rearTires": "235/60R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "11.4-inch Pivi Pro",
+        "safety": "ClearSight rear view",
+        "interior": "Grained leather",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-jaguar-fpace-p250": {
+    "name": "Jaguar F-PACE",
+    "year": "2024",
+    "trim": "P250 AWD",
+    "msrp": "$52,400",
+    "brand": "Jaguar",
+    "category": "Luxury SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "246 hp",
+        "torque": "269 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "AWD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "6.4 sec (0-60 mph)",
+        "topSpeed": "142 mph",
+        "range": "400 miles",
+        "efficiency": "22 city / 27 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "187.4 in",
+        "width": "79.8 in",
+        "height": "65.5 in",
+        "wheelbase": "113.1 in",
+        "groundClearance": "8.4 in",
+        "dragCoefficient": "0.34 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,211 lbs",
+        "grossWeight": "5,467 lbs",
+        "weightDistribution": "53/47 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "63.5 cu ft (rear seats folded)",
+        "fuelCapacity": "17.9 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/60R18",
+        "rearTires": "235/60R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "11.4-inch Pivi Pro",
+        "safety": "3D Surround Camera",
+        "interior": "Luxtec/suedecloth",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-ford-f150-xlt": {
+    "name": "Ford F-150",
+    "year": "2024",
+    "trim": "XLT 4x4",
+    "msrp": "$52,540",
+    "brand": "Ford",
+    "category": "Full-Size Pickup",
+    "specs": {
+      "engine": {
+        "type": "EcoBoost V-6",
+        "power": "325 hp",
+        "torque": "400 lb-ft",
+        "displacement": "2.7L",
+        "configuration": "4WD",
+        "transmission": "10-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "6.5 sec (0-60 mph)",
+        "topSpeed": "110 mph",
+        "range": "600 miles",
+        "efficiency": "19 city / 24 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "231.9 in",
+        "width": "79.9 in",
+        "height": "77.2 in",
+        "wheelbase": "145.0 in",
+        "groundClearance": "9.4 in",
+        "dragCoefficient": "0.36 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,705 lbs",
+        "grossWeight": "7,050 lbs",
+        "weightDistribution": "58/42 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers (SuperCrew)",
+        "cargoSpace": "52.8 cu ft (bed)",
+        "fuelCapacity": "26.0 gallons",
+        "towingCapacity": "8,400 lbs",
+        "payloadCapacity": "1,785 lbs"
+      },
+      "wheels": {
+        "frontTires": "265/70R17",
+        "rearTires": "265/70R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "12-inch SYNC 4",
+        "safety": "Co-Pilot360",
+        "interior": "Cloth seats",
+        "exterior": "LED box lighting"
+      }
+    }
+  },
+  "2024-chevrolet-silverado-1500-lt": {
+    "name": "Chevrolet Silverado 1500",
+    "year": "2024",
+    "trim": "LT 4WD",
+    "msrp": "$49,800",
+    "brand": "Chevrolet",
+    "category": "Full-Size Pickup",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "310 hp",
+        "torque": "430 lb-ft",
+        "displacement": "2.7L",
+        "configuration": "4WD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "6.8 sec (0-60 mph)",
+        "topSpeed": "105 mph",
+        "range": "580 miles",
+        "efficiency": "18 city / 23 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "231.7 in",
+        "width": "81.2 in",
+        "height": "75.6 in",
+        "wheelbase": "147.4 in",
+        "groundClearance": "8.9 in",
+        "dragCoefficient": "0.38 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,795 lbs",
+        "grossWeight": "7,100 lbs",
+        "weightDistribution": "57/43 F/R"
+      },
+      "capacity": {
+        "seating": "6 passengers",
+        "cargoSpace": "53.4 cu ft (bed)",
+        "fuelCapacity": "24.0 gallons",
+        "towingCapacity": "9,600 lbs",
+        "payloadCapacity": "2,280 lbs"
+      },
+      "wheels": {
+        "frontTires": "265/65R18",
+        "rearTires": "265/65R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "13.4-inch touchscreen",
+        "safety": "Chevy Safety Assist",
+        "interior": "Cloth/vinyl seats",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-ram-1500-bighorn": {
+    "name": "Ram 1500",
+    "year": "2024",
+    "trim": "Big Horn 4x4",
+    "msrp": "$53,945",
+    "brand": "Ram",
+    "category": "Full-Size Pickup",
+    "specs": {
+      "engine": {
+        "type": "HEMI V-8",
+        "power": "395 hp",
+        "torque": "410 lb-ft",
+        "displacement": "5.7L",
+        "configuration": "4WD",
+        "transmission": "8-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "6.1 sec (0-60 mph)",
+        "topSpeed": "110 mph",
+        "range": "550 miles",
+        "efficiency": "15 city / 22 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "232.9 in",
+        "width": "82.1 in",
+        "height": "77.6 in",
+        "wheelbase": "144.5 in",
+        "groundClearance": "10.1 in",
+        "dragCoefficient": "0.36 Cd"
+      },
+      "weight": {
+        "curbWeight": "5,372 lbs",
+        "grossWeight": "7,100 lbs",
+        "weightDistribution": "56/44 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "54.4 cu ft (bed)",
+        "fuelCapacity": "26.0 gallons",
+        "towingCapacity": "11,560 lbs",
+        "payloadCapacity": "1,820 lbs"
+      },
+      "wheels": {
+        "frontTires": "275/60R20",
+        "rearTires": "275/60R20",
+        "wheelSize": "20-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "12-inch Uconnect",
+        "safety": "ParkView rear camera",
+        "interior": "Cloth seats",
+        "exterior": "Wheel-to-wheel side steps"
+      }
+    }
+  },
+  "2024-tesla-model3-longrange": {
+    "name": "Tesla Model 3",
+    "year": "2024",
+    "trim": "Long Range AWD",
+    "msrp": "$47,490",
+    "brand": "Tesla",
+    "category": "Electric Sedan",
+    "specs": {
+      "engine": {
+        "type": "Dual Motor Electric",
+        "power": "425 hp",
+        "torque": "475 lb-ft",
+        "displacement": "N/A (Electric)",
+        "configuration": "AWD",
+        "transmission": "Single-Speed Direct Drive",
+        "fuelType": "Electric (Battery)"
+      },
+      "performance": {
+        "acceleration": "4.6 sec (0-60 mph)",
+        "topSpeed": "126 mph (limited)",
+        "range": "341 miles (EPA)",
+        "efficiency": "132 MPGe combined",
+        "chargingTime": "15-30 min (Supercharger 250kW)"
+      },
+      "dimensions": {
+        "length": "185.8 in",
+        "width": "72.8 in",
+        "height": "56.7 in",
+        "wheelbase": "113.2 in",
+        "groundClearance": "5.5 in",
+        "dragCoefficient": "0.23 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,817 lbs",
+        "grossWeight": "4,900 lbs",
+        "weightDistribution": "48/52 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "24 cu ft (3 front + 21 rear)",
+        "fuelCapacity": "N/A (Battery: 79.7 kWh)"
+      },
+      "wheels": {
+        "frontTires": "235/45R18",
+        "rearTires": "235/45R18",
+        "wheelSize": "18-inch Aero",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "15.4-inch touchscreen",
+        "safety": "Autopilot, 8 cameras",
+        "interior": "Vegan leather",
+        "exterior": "Glass roof"
+      }
+    }
+  },
+  "2024-tesla-modely-longrange": {
+    "name": "Tesla Model Y",
+    "year": "2024",
+    "trim": "Long Range AWD",
+    "msrp": "$52,490",
+    "brand": "Tesla",
+    "category": "Electric SUV",
+    "specs": {
+      "engine": {
+        "type": "Dual Motor Electric",
+        "power": "384 hp",
+        "torque": "376 lb-ft",
+        "displacement": "N/A (Electric)",
+        "configuration": "AWD",
+        "transmission": "Single-Speed Direct Drive",
+        "fuelType": "Electric (Battery)"
+      },
+      "performance": {
+        "acceleration": "4.8 sec (0-60 mph)",
+        "topSpeed": "135 mph (limited)",
+        "range": "330 miles (EPA)",
+        "efficiency": "122 MPGe combined",
+        "chargingTime": "15-30 min (Supercharger 250kW)"
+      },
+      "dimensions": {
+        "length": "187.0 in",
+        "width": "75.6 in",
+        "height": "63.9 in",
+        "wheelbase": "113.8 in",
+        "groundClearance": "6.6 in",
+        "dragCoefficient": "0.23 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,416 lbs",
+        "grossWeight": "5,710 lbs",
+        "weightDistribution": "48/52 F/R"
+      },
+      "capacity": {
+        "seating": "5 or 7 passengers",
+        "cargoSpace": "76 cu ft (rear seats folded)",
+        "fuelCapacity": "N/A (Battery: 75 kWh)"
+      },
+      "wheels": {
+        "frontTires": "255/45R19",
+        "rearTires": "255/45R19",
+        "wheelSize": "19-inch Gemini",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "15-inch touchscreen",
+        "safety": "Autopilot, 8 cameras",
+        "interior": "Vegan leather",
+        "exterior": "Glass roof"
+      }
+    }
+  },
+  "2024-rivian-r1t-adventure": {
+    "name": "Rivian R1T",
+    "year": "2024",
+    "trim": "Adventure",
+    "msrp": "$73,000",
+    "brand": "Rivian",
+    "category": "Electric Pickup",
+    "specs": {
+      "engine": {
+        "type": "Quad Motor Electric",
+        "power": "835 hp",
+        "torque": "908 lb-ft",
+        "displacement": "N/A (Electric)",
+        "configuration": "AWD (4-Motor)",
+        "transmission": "Single-Speed Direct Drive",
+        "fuelType": "Electric (Battery)"
+      },
+      "performance": {
+        "acceleration": "3.0 sec (0-60 mph)",
+        "topSpeed": "125 mph",
+        "range": "314 miles (EPA)",
+        "efficiency": "70 MPGe combined",
+        "chargingTime": "20-30 min (DC Fast Charge)"
+      },
+      "dimensions": {
+        "length": "217.1 in",
+        "width": "81.8 in",
+        "height": "77.3 in",
+        "wheelbase": "135.8 in",
+        "groundClearance": "14.9 in (adjustable)",
+        "dragCoefficient": "0.32 Cd"
+      },
+      "weight": {
+        "curbWeight": "7,148 lbs",
+        "grossWeight": "10,019 lbs",
+        "weightDistribution": "50/50 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "54.0 cu ft (bed + Gear Tunnel)",
+        "fuelCapacity": "N/A (Battery: 135 kWh)",
+        "towingCapacity": "11,000 lbs",
+        "payloadCapacity": "1,764 lbs"
+      },
+      "wheels": {
+        "frontTires": "275/65R20",
+        "rearTires": "275/65R20",
+        "wheelSize": "20-inch All-Terrain",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "16-inch center display",
+        "safety": "Automatic Emergency Braking",
+        "interior": "Vegan leather",
+        "exterior": "Gear Tunnel"
+      }
+    }
+  },
+  "2024-polestar-2-longrange": {
+    "name": "Polestar 2",
+    "year": "2024",
+    "trim": "Long Range Single Motor",
+    "msrp": "$49,900",
+    "brand": "Polestar",
+    "category": "Electric Sedan",
+    "specs": {
+      "engine": {
+        "type": "Single Motor Electric",
+        "power": "299 hp",
+        "torque": "289 lb-ft",
+        "displacement": "N/A (Electric)",
+        "configuration": "FWD",
+        "transmission": "Single-Speed Direct Drive",
+        "fuelType": "Electric (Battery)"
+      },
+      "performance": {
+        "acceleration": "6.2 sec (0-60 mph)",
+        "topSpeed": "127 mph (limited)",
+        "range": "320 miles (EPA)",
+        "efficiency": "107 MPGe combined",
+        "chargingTime": "30-40 min (DC Fast Charge)"
+      },
+      "dimensions": {
+        "length": "181.3 in",
+        "width": "74.8 in",
+        "height": "58.5 in",
+        "wheelbase": "108.3 in",
+        "groundClearance": "5.5 in",
+        "dragCoefficient": "0.28 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,563 lbs",
+        "grossWeight": "5,632 lbs",
+        "weightDistribution": "55/45 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "35.5 cu ft",
+        "fuelCapacity": "N/A (Battery: 82 kWh)"
+      },
+      "wheels": {
+        "frontTires": "235/40R20",
+        "rearTires": "235/40R20",
+        "wheelSize": "20-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "11.2-inch Android Automotive",
+        "safety": "Pilot Assist",
+        "interior": "WeaveTech vegan upholstery",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-lucid-air-pure": {
+    "name": "Lucid Air",
+    "year": "2024",
+    "trim": "Pure AWD",
+    "msrp": "$71,400",
+    "brand": "Lucid",
+    "category": "Electric Luxury Sedan",
+    "specs": {
+      "engine": {
+        "type": "Dual Motor Electric",
+        "power": "480 hp",
+        "torque": "N/A",
+        "displacement": "N/A (Electric)",
+        "configuration": "AWD",
+        "transmission": "Single-Speed Direct Drive",
+        "fuelType": "Electric (Battery)"
+      },
+      "performance": {
+        "acceleration": "4.5 sec (0-60 mph)",
+        "topSpeed": "124 mph",
+        "range": "419 miles (EPA)",
+        "efficiency": "127 MPGe combined",
+        "chargingTime": "20 min (DC Fast Charge to 80%)"
+      },
+      "dimensions": {
+        "length": "195.9 in",
+        "width": "76.3 in",
+        "height": "55.5 in",
+        "wheelbase": "116.5 in",
+        "groundClearance": "5.5 in",
+        "dragCoefficient": "0.21 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,963 lbs",
+        "grossWeight": "6,173 lbs",
+        "weightDistribution": "49/51 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "32.0 cu ft (front + rear trunks)",
+        "fuelCapacity": "N/A (Battery: 88 kWh)"
+      },
+      "wheels": {
+        "frontTires": "245/45R19",
+        "rearTires": "265/40R19",
+        "wheelSize": "19/20-inch Staggered",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "34-inch curved Glass Cockpit",
+        "safety": "DreamDrive Advanced Driver Assistance",
+        "interior": "Nappa leather",
+        "exterior": "Micro-Lens Array headlights"
+      }
+    }
+  },
+  "2024-mini-cooper-s": {
+    "name": "MINI Cooper S",
+    "year": "2024",
+    "trim": "3-Door",
+    "msrp": "$35,500",
+    "brand": "MINI",
+    "category": "Subcompact Car",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "201 hp",
+        "torque": "221 lb-ft",
+        "displacement": "2.0L",
+        "configuration": "FWD",
+        "transmission": "7-Speed Dual-Clutch",
+        "fuelType": "Gasoline (Premium)"
+      },
+      "performance": {
+        "acceleration": "6.4 sec (0-60 mph)",
+        "topSpeed": "146 mph (limited)",
+        "range": "350 miles",
+        "efficiency": "26 city / 34 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "151.1 in",
+        "width": "68.0 in",
+        "height": "55.7 in",
+        "wheelbase": "98.2 in",
+        "groundClearance": "5.5 in",
+        "dragCoefficient": "0.31 Cd"
+      },
+      "weight": {
+        "curbWeight": "2,987 lbs",
+        "grossWeight": "3,858 lbs",
+        "weightDistribution": "62/38 F/R"
+      },
+      "capacity": {
+        "seating": "4 passengers",
+        "cargoSpace": "8.7 cu ft",
+        "fuelCapacity": "11.6 gallons"
+      },
+      "wheels": {
+        "frontTires": "205/45R17",
+        "rearTires": "205/45R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8.8-inch touchscreen",
+        "safety": "Active Driving Assistant",
+        "interior": "Leatherette seats",
+        "exterior": "LED lights"
+      }
+    }
+  },
+  "2024-fiat-500x-trekking": {
+    "name": "FIAT 500X",
+    "year": "2024",
+    "trim": "Trekking AWD",
+    "msrp": "$32,490",
+    "brand": "FIAT",
+    "category": "Subcompact SUV",
+    "specs": {
+      "engine": {
+        "type": "Turbocharged I-4",
+        "power": "177 hp",
+        "torque": "210 lb-ft",
+        "displacement": "1.3L",
+        "configuration": "AWD",
+        "transmission": "9-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "8.2 sec (0-60 mph)",
+        "topSpeed": "120 mph",
+        "range": "370 miles",
+        "efficiency": "24 city / 30 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "167.2 in",
+        "width": "71.0 in",
+        "height": "63.4 in",
+        "wheelbase": "101.2 in",
+        "groundClearance": "6.9 in",
+        "dragCoefficient": "0.35 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,384 lbs",
+        "grossWeight": "4,387 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "5 passengers",
+        "cargoSpace": "48.9 cu ft (rear seats folded)",
+        "fuelCapacity": "12.7 gallons"
+      },
+      "wheels": {
+        "frontTires": "225/55R18",
+        "rearTires": "225/55R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "8.4-inch Uconnect",
+        "safety": "Blind-spot monitoring",
+        "interior": "Cloth/vinyl seats",
+        "exterior": "LED taillights"
+      }
+    }
+  },
+  "2024-mitsubishi-outlander-es": {
+    "name": "Mitsubishi Outlander",
+    "year": "2024",
+    "trim": "ES AWD",
+    "msrp": "$32,875",
+    "brand": "Mitsubishi",
+    "category": "Compact SUV",
+    "specs": {
+      "engine": {
+        "type": "Inline-4",
+        "power": "181 hp",
+        "torque": "181 lb-ft",
+        "displacement": "2.5L",
+        "configuration": "AWD",
+        "transmission": "CVT",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "9.2 sec (0-60 mph)",
+        "topSpeed": "118 mph",
+        "range": "440 miles",
+        "efficiency": "24 city / 30 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "185.4 in",
+        "width": "71.9 in",
+        "height": "66.1 in",
+        "wheelbase": "110.2 in",
+        "groundClearance": "8.5 in",
+        "dragCoefficient": "0.34 Cd"
+      },
+      "weight": {
+        "curbWeight": "3,814 lbs",
+        "grossWeight": "5,070 lbs",
+        "weightDistribution": "60/40 F/R"
+      },
+      "capacity": {
+        "seating": "7 passengers",
+        "cargoSpace": "75.8 cu ft (rear seats folded)",
+        "fuelCapacity": "14.5 gallons"
+      },
+      "wheels": {
+        "frontTires": "255/50R18",
+        "rearTires": "255/50R18",
+        "wheelSize": "18-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "12.3-inch touchscreen",
+        "safety": "Forward Collision Mitigation",
+        "interior": "Cloth seats, 3rd-row",
+        "exterior": "LED headlights"
+      }
+    }
+  },
+  "2024-chrysler-pacifica-touring": {
+    "name": "Chrysler Pacifica",
+    "year": "2024",
+    "trim": "Touring",
+    "msrp": "$40,460",
+    "brand": "Chrysler",
+    "category": "Minivan",
+    "specs": {
+      "engine": {
+        "type": "V-6",
+        "power": "287 hp",
+        "torque": "262 lb-ft",
+        "displacement": "3.6L",
+        "configuration": "FWD",
+        "transmission": "9-Speed Auto",
+        "fuelType": "Gasoline (Regular)"
+      },
+      "performance": {
+        "acceleration": "7.8 sec (0-60 mph)",
+        "topSpeed": "115 mph",
+        "range": "480 miles",
+        "efficiency": "19 city / 28 hwy mpg",
+        "chargingTime": "N/A"
+      },
+      "dimensions": {
+        "length": "203.8 in",
+        "width": "79.6 in",
+        "height": "69.9 in",
+        "wheelbase": "121.6 in",
+        "groundClearance": "5.1 in",
+        "dragCoefficient": "0.32 Cd"
+      },
+      "weight": {
+        "curbWeight": "4,330 lbs",
+        "grossWeight": "6,050 lbs",
+        "weightDistribution": "56/44 F/R"
+      },
+      "capacity": {
+        "seating": "8 passengers",
+        "cargoSpace": "140.5 cu ft (rear seats removed)",
+        "fuelCapacity": "19.0 gallons"
+      },
+      "wheels": {
+        "frontTires": "235/65R17",
+        "rearTires": "235/65R17",
+        "wheelSize": "17-inch",
+        "brakes": "Ventilated disc (all)"
+      },
+      "features": {
+        "infotainment": "10.1-inch Uconnect",
+        "safety": "ParkView rear camera",
+        "interior": "Stow 'n Go seating",
+        "exterior": "Power sliding doors"
+      }
+    }
+  }
+};
