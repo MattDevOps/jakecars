@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarCompare - Admin & Comparison</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2d2d2d;
+            --accent: #e63946;
+            --accent-dark: #c52a36;
+            --text: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --border: #3a3a3a;
+            --bg: #0d0d0d;
+            --card: #161616;
+            --highlight: #ffc914;
+            --success: #2ecc71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(230, 57, 70, 0.1);
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-tab {
+            padding: 0.7rem 1.5rem;
+            background: var(--secondary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            border-color: var(--accent);
+            background: var(--primary);
+        }
+
+        .nav-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* Admin Panel Styles */
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .vehicle-list {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        .vehicle-list h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .vehicle-item {
+            padding: 0.8rem;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vehicle-item:hover {
+            border-color: var(--accent);
+            background: var(--primary);
+        }
+
+        .vehicle-item.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .delete-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            color: var(--accent);
+        }
+
+        .add-new-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--success);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .add-new-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .form-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            background: var(--secondary);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--primary);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-save {
+            background: var(--success);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .btn-export {
+            background: var(--highlight);
+            color: var(--primary);
+        }
+
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 201, 20, 0.3);
+        }
+
+        .btn-import {
+            background: var(--secondary);
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-import:hover {
+            border-color: var(--accent);
+        }
+
+        /* Comparison View Styles (from previous version) */
+        .selector-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .selector-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .selector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .car-selector {
+            position: relative;
+        }
+
+        .car-selector label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .car-selector select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: var(--secondary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e63946' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1.2rem;
+            padding-right: 2.5rem;
+        }
+
+        .car-selector select:hover {
+            border-color: var(--accent);
+            background-color: var(--primary);
+        }
+
+        .car-selector select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.2);
+        }
+
+        .compare-button {
+            margin-top: 1.5rem;
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .compare-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(230, 57, 70, 0.4);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .car-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 40px rgba(230, 57, 70, 0.2);
+        }
+
+        .car-header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            padding: 2rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .car-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--text);
+        }
+
+        .car-year {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .car-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--highlight);
+            margin-top: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .specs-section {
+            padding: 1.5rem 2rem;
+        }
+
+        .spec-category {
+            margin-bottom: 2rem;
+        }
+
+        .spec-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(58, 58, 58, 0.5);
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            flex: 1;
+            font-weight: 400;
+        }
+
+        .spec-value {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 500;
+            text-align: right;
+            flex: 1;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            background: var(--success);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(46, 204, 113, 0.4);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        @media (max-width: 1024px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .selector-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-tabs {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .instruction-box {
+            background: rgba(255, 201, 20, 0.1);
+            border: 2px solid var(--highlight);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .instruction-box h4 {
+            color: var(--highlight);
+            margin-bottom: 0.5rem;
+        }
+
+        .instruction-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .instruction-box ul {
+            margin-top: 0.8rem;
+            margin-left: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .source-note {
+            background: rgba(230, 57, 70, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+        }
+
+        .source-note strong {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Car<span>Compare</span></div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchView('compare')">Compare</button>
+                <button class="nav-tab" onclick="switchView('admin')">Manage Data</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="notification" id="notification">Vehicle saved successfully!</div>
+
+    <div class="container">
+        <!-- Compare View -->
+        <div id="compareView" class="view active">
+            <div class="selector-section">
+                <div class="selector-title">
+                    <span>🚗</span> Select Vehicles to Compare
+                </div>
+                <div class="selector-grid" id="selectorGrid">
+                    <!-- Car selectors will be added dynamically -->
+                </div>
+                <button class="compare-button" onclick="compareVehicles()">Compare Vehicles</button>
+            </div>
+
+            <div id="comparisonArea" class="comparison-grid">
+                <div class="empty-state">
+                    <div class="empty-state-icon">🏁</div>
+                    <h2>Select vehicles above to start comparing</h2>
+                    <p>Choose 2-4 vehicles to see detailed side-by-side specifications</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin View -->
+        <div id="adminView" class="view">
+            <div class="instruction-box">
+                <h4>📋 How to Add Accurate Vehicle Data</h4>
+                <p>Get the most accurate specs by visiting official manufacturer websites:</p>
+                <ul>
+                    <li><strong>Step 1:</strong> Go to the manufacturer's official website (e.g., honda.com, toyota.com, bmw.com)</li>
+                    <li><strong>Step 2:</strong> Navigate to the specific model and trim you want to add</li>
+                    <li><strong>Step 3:</strong> Look for "Specifications", "Features & Specs", or "Technical Data" sections</li>
+                    <li><strong>Step 4:</strong> Copy the exact values into the form below</li>
+                    <li><strong>Step 5:</strong> For EPA fuel economy, check <a href="https://www.fueleconomy.gov" target="_blank" style="color: var(--accent);">fueleconomy.gov</a></li>
+                </ul>
+                <div class="source-note">
+                    <strong>Important:</strong> Always verify data from official sources. Manufacturer websites are updated with the latest specifications and trim options.
+                </div>
+            </div>
+
+            <div class="admin-grid">
+                <div class="vehicle-list">
+                    <h3>Your Vehicles</h3>
+                    <div id="vehicleList"></div>
+                    <button class="add-new-btn" onclick="addNewVehicle()">+ Add New Vehicle</button>
+                    <button class="btn btn-export" style="width: 100%; margin-top: 0.5rem;" onclick="exportData()">Export Data</button>
+                    <button class="btn btn-import" style="width: 100%; margin-top: 0.5rem;" onclick="importData()">Import Data</button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(event)">
+                </div>
+
+                <div class="form-container">
+                    <form id="vehicleForm">
+                        <!-- Basic Info -->
+                        <div class="form-section">
+                            <h3>Basic Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Vehicle Name *</label>
+                                    <input type="text" name="name" required placeholder="e.g., Honda Accord">
+                                </div>
+                                <div class="form-group">
+                                    <label>Year *</label>
+                                    <input type="text" name="year" required placeholder="e.g., 2024">
+                                </div>
+                                <div class="form-group">
+                                    <label>Trim Level *</label>
+                                    <input type="text" name="trim" required placeholder="e.g., Sport">
+                                </div>
+                                <div class="form-group">
+                                    <label>MSRP *</label>
+                                    <input type="text" name="msrp" required placeholder="e.g., $30,895">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Engine & Powertrain -->
+                        <div class="form-section">
+                            <h3>⚡ Engine & Powertrain</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Engine Type</label>
+                                    <input type="text" name="engine_type" placeholder="e.g., Turbocharged I-4">
+                                </div>
+                                <div class="form-group">
+                                    <label>Power (HP)</label>
+                                    <input type="text" name="engine_power" placeholder="e.g., 192 hp @ 5,500 rpm">
+                                </div>
+                                <div class="form-group">
+                                    <label>Torque</label>
+                                    <input type="text" name="engine_torque" placeholder="e.g., 192 lb-ft @ 1,600 rpm">
+                                </div>
+                                <div class="form-group">
+                                    <label>Displacement</label>
+                                    <input type="text" name="engine_displacement" placeholder="e.g., 1.5L">
+                                </div>
+                                <div class="form-group">
+                                    <label>Configuration</label>
+                                    <input type="text" name="engine_configuration" placeholder="e.g., FWD">
+                                </div>
+                                <div class="form-group">
+                                    <label>Transmission</label>
+                                    <input type="text" name="engine_transmission" placeholder="e.g., CVT">
+                                </div>
+                                <div class="form-group">
+                                    <label>Fuel Type</label>
+                                    <input type="text" name="engine_fuelType" placeholder="e.g., Gasoline (Regular)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance -->
+                        <div class="form-section">
+                            <h3>🏁 Performance</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>0-60 mph</label>
+                                    <input type="text" name="performance_acceleration" placeholder="e.g., 7.5 sec">
+                                </div>
+                                <div class="form-group">
+                                    <label>Top Speed</label>
+                                    <input type="text" name="performance_topSpeed" placeholder="e.g., 130 mph">
+                                </div>
+                                <div class="form-group">
+                                    <label>Range</label>
+                                    <input type="text" name="performance_range" placeholder="e.g., 450 miles">
+                                </div>
+                                <div class="form-group">
+                                    <label>Fuel Efficiency</label>
+                                    <input type="text" name="performance_efficiency" placeholder="e.g., 30 city / 38 hwy mpg">
+                                </div>
+                                <div class="form-group">
+                                    <label>Charging Time (if EV)</label>
+                                    <input type="text" name="performance_chargingTime" placeholder="e.g., N/A or 15-30 min">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dimensions -->
+                        <div class="form-section">
+                            <h3>📏 Dimensions</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Length</label>
+                                    <input type="text" name="dimensions_length" placeholder="e.g., 194.5 in">
+                                </div>
+                                <div class="form-group">
+                                    <label>Width</label>
+                                    <input type="text" name="dimensions_width" placeholder="e.g., 73.3 in">
+                                </div>
+                                <div class="form-group">
+                                    <label>Height</label>
+                                    <input type="text" name="dimensions_height" placeholder="e.g., 57.1 in">
+                                </div>
+                                <div class="form-group">
+                                    <label>Wheelbase</label>
+                                    <input type="text" name="dimensions_wheelbase" placeholder="e.g., 111.4 in">
+                                </div>
+                                <div class="form-group">
+                                    <label>Ground Clearance</label>
+                                    <input type="text" name="dimensions_groundClearance" placeholder="e.g., 6.5 in">
+                                </div>
+                                <div class="form-group">
+                                    <label>Drag Coefficient</label>
+                                    <input type="text" name="dimensions_dragCoefficient" placeholder="e.g., 0.27 Cd">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Weight -->
+                        <div class="form-section">
+                            <h3>⚖️ Weight</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Curb Weight</label>
+                                    <input type="text" name="weight_curbWeight" placeholder="e.g., 3,230 lbs">
+                                </div>
+                                <div class="form-group">
+                                    <label>Gross Weight</label>
+                                    <input type="text" name="weight_grossWeight" placeholder="e.g., 4,354 lbs">
+                                </div>
+                                <div class="form-group">
+                                    <label>Weight Distribution</label>
+                                    <input type="text" name="weight_weightDistribution" placeholder="e.g., 60/40 F/R">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Capacity -->
+                        <div class="form-section">
+                            <h3>👥 Capacity</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Seating</label>
+                                    <input type="text" name="capacity_seating" placeholder="e.g., 5 passengers">
+                                </div>
+                                <div class="form-group">
+                                    <label>Cargo Space</label>
+                                    <input type="text" name="capacity_cargoSpace" placeholder="e.g., 16.7 cu ft">
+                                </div>
+                                <div class="form-group">
+                                    <label>Fuel/Battery Capacity</label>
+                                    <input type="text" name="capacity_fuelCapacity" placeholder="e.g., 14.8 gallons">
+                                </div>
+                                <div class="form-group">
+                                    <label>Towing Capacity (if applicable)</label>
+                                    <input type="text" name="capacity_towingCapacity" placeholder="e.g., 9,500 lbs">
+                                </div>
+                                <div class="form-group">
+                                    <label>Payload Capacity (if applicable)</label>
+                                    <input type="text" name="capacity_payloadCapacity" placeholder="e.g., 2,120 lbs">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wheels & Tires -->
+                        <div class="form-section">
+                            <h3>🛞 Wheels & Tires</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Front Tires</label>
+                                    <input type="text" name="wheels_frontTires" placeholder="e.g., 235/40R19">
+                                </div>
+                                <div class="form-group">
+                                    <label>Rear Tires</label>
+                                    <input type="text" name="wheels_rearTires" placeholder="e.g., 235/40R19">
+                                </div>
+                                <div class="form-group">
+                                    <label>Wheel Size</label>
+                                    <input type="text" name="wheels_wheelSize" placeholder="e.g., 19-inch Alloy">
+                                </div>
+                                <div class="form-group">
+                                    <label>Brakes</label>
+                                    <input type="text" name="wheels_brakes" placeholder="e.g., Ventilated disc (F), Solid disc (R)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Features -->
+                        <div class="form-section">
+                            <h3>✨ Features</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Infotainment</label>
+                                    <input type="text" name="features_infotainment" placeholder="e.g., 12.3-inch touchscreen">
+                                </div>
+                                <div class="form-group">
+                                    <label>Safety</label>
+                                    <input type="text" name="features_safety" placeholder="e.g., Honda Sensing">
+                                </div>
+                                <div class="form-group">
+                                    <label>Interior</label>
+                                    <input type="text" name="features_interior" placeholder="e.g., Sport seats, dual-zone climate">
+                                </div>
+                                <div class="form-group">
+                                    <label>Exterior</label>
+                                    <input type="text" name="features_exterior" placeholder="e.g., LED headlights">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-save">Save Vehicle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Local Storage Database
+        let carDatabase = JSON.parse(localStorage.getItem('carDatabase')) || {};
+        let currentEditId = null;
+        let selectedCars = [];
+
+        // Initialize
+        function init() {
+            updateVehicleList();
+            createCarSelectors(4);
+            
+            // Form submission
+            document.getElementById('vehicleForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveVehicle();
+            });
+        }
+
+        // Switch between views
+        function switchView(view) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            
+            if (view === 'compare') {
+                document.getElementById('compareView').classList.add('active');
+                document.querySelector('.nav-tab:first-child').classList.add('active');
+                createCarSelectors(4); // Refresh selectors with latest data
+            } else {
+                document.getElementById('adminView').classList.add('active');
+                document.querySelector('.nav-tab:last-child').classList.add('active');
+            }
+        }
+
+        // Add new vehicle
+        function addNewVehicle() {
+            currentEditId = null;
+            document.getElementById('vehicleForm').reset();
+            document.querySelectorAll('.vehicle-item').forEach(item => item.classList.remove('active'));
+        }
+
+        // Save vehicle
+        function saveVehicle() {
+            const form = document.getElementById('vehicleForm');
+            const formData = new FormData(form);
+            
+            const vehicleId = currentEditId || `${Date.now()}-${formData.get('name').toLowerCase().replace(/\s+/g, '-')}`;
+            
+            const vehicle = {
+                name: formData.get('name'),
+                year: formData.get('year'),
+                trim: formData.get('trim'),
+                msrp: formData.get('msrp'),
+                specs: {
+                    engine: {
+                        type: formData.get('engine_type') || 'N/A',
+                        power: formData.get('engine_power') || 'N/A',
+                        torque: formData.get('engine_torque') || 'N/A',
+                        displacement: formData.get('engine_displacement') || 'N/A',
+                        configuration: formData.get('engine_configuration') || 'N/A',
+                        transmission: formData.get('engine_transmission') || 'N/A',
+                        fuelType: formData.get('engine_fuelType') || 'N/A'
+                    },
+                    performance: {
+                        acceleration: formData.get('performance_acceleration') || 'N/A',
+                        topSpeed: formData.get('performance_topSpeed') || 'N/A',
+                        range: formData.get('performance_range') || 'N/A',
+                        efficiency: formData.get('performance_efficiency') || 'N/A',
+                        chargingTime: formData.get('performance_chargingTime') || 'N/A'
+                    },
+                    dimensions: {
+                        length: formData.get('dimensions_length') || 'N/A',
+                        width: formData.get('dimensions_width') || 'N/A',
+                        height: formData.get('dimensions_height') || 'N/A',
+                        wheelbase: formData.get('dimensions_wheelbase') || 'N/A',
+                        groundClearance: formData.get('dimensions_groundClearance') || 'N/A',
+                        dragCoefficient: formData.get('dimensions_dragCoefficient') || 'N/A'
+                    },
+                    weight: {
+                        curbWeight: formData.get('weight_curbWeight') || 'N/A',
+                        grossWeight: formData.get('weight_grossWeight') || 'N/A',
+                        weightDistribution: formData.get('weight_weightDistribution') || 'N/A'
+                    },
+                    capacity: {
+                        seating: formData.get('capacity_seating') || 'N/A',
+                        cargoSpace: formData.get('capacity_cargoSpace') || 'N/A',
+                        fuelCapacity: formData.get('capacity_fuelCapacity') || 'N/A'
+                    },
+                    wheels: {
+                        frontTires: formData.get('wheels_frontTires') || 'N/A',
+                        rearTires: formData.get('wheels_rearTires') || 'N/A',
+                        wheelSize: formData.get('wheels_wheelSize') || 'N/A',
+                        brakes: formData.get('wheels_brakes') || 'N/A'
+                    },
+                    features: {
+                        infotainment: formData.get('features_infotainment') || 'N/A',
+                        safety: formData.get('features_safety') || 'N/A',
+                        interior: formData.get('features_interior') || 'N/A',
+                        exterior: formData.get('features_exterior') || 'N/A'
+                    }
+                }
+            };
+
+            // Add optional capacity fields if provided
+            if (formData.get('capacity_towingCapacity')) {
+                vehicle.specs.capacity.towingCapacity = formData.get('capacity_towingCapacity');
+            }
+            if (formData.get('capacity_payloadCapacity')) {
+                vehicle.specs.capacity.payloadCapacity = formData.get('capacity_payloadCapacity');
+            }
+            
+            carDatabase[vehicleId] = vehicle;
+            localStorage.setItem('carDatabase', JSON.stringify(carDatabase));
+            
+            showNotification('Vehicle saved successfully!');
+            updateVehicleList();
+            currentEditId = vehicleId;
+        }
+
+        // Update vehicle list in sidebar
+        function updateVehicleList() {
+            const listContainer = document.getElementById('vehicleList');
+            listContainer.innerHTML = '';
+            
+            if (Object.keys(carDatabase).length === 0) {
+                listContainer.innerHTML = '<p style="color: var(--text-muted); padding: 1rem 0;">No vehicles yet. Add your first one!</p>';
+                return;
+            }
+            
+            Object.entries(carDatabase).forEach(([id, car]) => {
+                const item = document.createElement('div');
+                item.className = 'vehicle-item';
+                if (id === currentEditId) item.classList.add('active');
+                
+                item.innerHTML = `
+                    <span onclick="editVehicle('${id}')" style="flex: 1; cursor: pointer;">
+                        ${car.year} ${car.name}
+                    </span>
+                    <button class="delete-btn" onclick="deleteVehicle('${id}', event)">×</button>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        // Edit vehicle
+        function editVehicle(id) {
+            currentEditId = id;
+            const car = carDatabase[id];
+            
+            // Populate form
+            document.querySelector('[name="name"]').value = car.name;
+            document.querySelector('[name="year"]').value = car.year;
+            document.querySelector('[name="trim"]').value = car.trim;
+            document.querySelector('[name="msrp"]').value = car.msrp;
+            
+            // Populate all spec fields
+            const specs = car.specs;
+            Object.keys(specs).forEach(category => {
+                Object.keys(specs[category]).forEach(field => {
+                    const input = document.querySelector(`[name="${category}_${field}"]`);
+                    if (input) {
+                        input.value = specs[category][field];
+                    }
+                });
+            });
+            
+            updateVehicleList();
+        }
+
+        // Delete vehicle
+        function deleteVehicle(id, event) {
+            event.stopPropagation();
+            if (confirm('Are you sure you want to delete this vehicle?')) {
+                delete carDatabase[id];
+                localStorage.setItem('carDatabase', JSON.stringify(carDatabase));
+                if (currentEditId === id) {
+                    currentEditId = null;
+                    document.getElementById('vehicleForm').reset();
+                }
+                updateVehicleList();
+                showNotification('Vehicle deleted');
+            }
+        }
+
+        // Export data
+        function exportData() {
+            const dataStr = JSON.stringify(carDatabase, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `car-database-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+            showNotification('Data exported successfully!');
+        }
+
+        // Import data
+        function importData() {
+            document.getElementById('importFile').click();
+        }
+
+        function handleImport(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const imported = JSON.parse(e.target.result);
+                        carDatabase = { ...carDatabase, ...imported };
+                        localStorage.setItem('carDatabase', JSON.stringify(carDatabase));
+                        updateVehicleList();
+                        showNotification('Data imported successfully!');
+                    } catch (error) {
+                        alert('Error importing file. Please ensure it\'s a valid JSON file.');
+                    }
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notif = document.getElementById('notification');
+            notif.textContent = message;
+            notif.classList.add('show');
+            setTimeout(() => {
+                notif.classList.remove('show');
+            }, 3000);
+        }
+
+        // Comparison functions (from previous version)
+        function createCarSelectors(count) {
+            const grid = document.getElementById('selectorGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < count; i++) {
+                const selectorDiv = document.createElement('div');
+                selectorDiv.className = 'car-selector';
+                selectorDiv.innerHTML = `
+                    <label>Vehicle ${i + 1}</label>
+                    <select id="car-select-${i}" onchange="updateSelection(${i}, this.value)">
+                        <option value="">-- Select a vehicle --</option>
+                        ${Object.keys(carDatabase).map(key => 
+                            `<option value="${key}">${carDatabase[key].year} ${carDatabase[key].name} (${carDatabase[key].trim})</option>`
+                        ).join('')}
+                    </select>
+                `;
+                grid.appendChild(selectorDiv);
+            }
+        }
+
+        function updateSelection(index, carKey) {
+            if (carKey) {
+                selectedCars[index] = carKey;
+            } else {
+                selectedCars[index] = null;
+            }
+        }
+
+        function compareVehicles() {
+            const comparisonArea = document.getElementById('comparisonArea');
+            const validCars = selectedCars.filter(car => car);
+            
+            if (validCars.length === 0) {
+                comparisonArea.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🏁</div>
+                        <h2>Select vehicles above to start comparing</h2>
+                        <p>Choose 2-4 vehicles to see detailed side-by-side specifications</p>
+                    </div>
+                `;
+                return;
+            }
+
+            comparisonArea.innerHTML = validCars.map((carKey, index) => {
+                const car = carDatabase[carKey];
+                return createCarCard(car, index);
+            }).join('');
+        }
+
+        function createCarCard(car, index) {
+            return `
+                <div class="car-card" style="animation-delay: ${index * 0.1}s">
+                    <div class="car-header">
+                        <div class="car-name">${car.name}</div>
+                        <div class="car-year">${car.year} • ${car.trim}</div>
+                        <div class="car-price">${car.msrp}</div>
+                    </div>
+                    <div class="specs-section">
+                        ${createSpecSection('⚡ Engine & Powertrain', car.specs.engine)}
+                        ${createSpecSection('🏁 Performance', car.specs.performance)}
+                        ${createSpecSection('📏 Dimensions', car.specs.dimensions)}
+                        ${createSpecSection('⚖️ Weight', car.specs.weight)}
+                        ${createSpecSection('👥 Capacity', car.specs.capacity)}
+                        ${createSpecSection('🛞 Wheels & Tires', car.specs.wheels)}
+                        ${createSpecSection('✨ Features', car.specs.features)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function createSpecSection(title, specs) {
+            return `
+                <div class="spec-category">
+                    <div class="category-title">${title}</div>
+                    ${Object.entries(specs).map(([key, value]) => `
+                        <div class="spec-row">
+                            <div class="spec-label">${formatLabel(key)}</div>
+                            <div class="spec-value">${value}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function formatLabel(key) {
+            return key
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, str => str.toUpperCase())
+                .trim();
+        }
+
+        // Initialize on page load
+        init();
+    </script>
+</body>
+</html>
