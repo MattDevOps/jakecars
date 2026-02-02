@@ -20,6 +20,8 @@
             --card: #ffffff;
             --highlight: #2563eb;
             --success: #10b981;
+            --price-accent: #fbbf24;
+            --category-accent: #3b82f6;
             --shadow: rgba(30, 64, 175, 0.1);
             --shadow-hover: rgba(30, 64, 175, 0.2);
         }
@@ -250,10 +252,11 @@
 
         .car-price {
             font-size: 1.5rem;
-            font-weight: 600;
-            color: #ffffff;
+            font-weight: 700;
+            color: var(--price-accent);
             margin-top: 1rem;
             font-family: 'JetBrains Mono', monospace;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .specs-section {
@@ -271,10 +274,13 @@
         .category-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--category-accent);
             margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
+            padding: 0.75rem 1rem;
+            padding-bottom: 0.75rem;
             border-bottom: 2px solid var(--border);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border-radius: 8px 8px 0 0;
             display: flex;
             align-items: center;
             gap: 0.5rem;
