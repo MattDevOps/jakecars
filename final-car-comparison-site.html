@@ -7,17 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a1a1a;
-            --secondary: #2d2d2d;
-            --accent: #e63946;
-            --accent-dark: #c52a36;
-            --text: #f5f5f5;
-            --text-muted: #a0a0a0;
-            --border: #3a3a3a;
-            --bg: #0d0d0d;
-            --card: #161616;
-            --highlight: #ffc914;
-            --success: #2ecc71;
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #2563eb;
+            --accent-dark: #1d4ed8;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+            --card: #ffffff;
+            --highlight: #2563eb;
+            --success: #10b981;
+            --shadow: rgba(30, 64, 175, 0.1);
+            --shadow-hover: rgba(30, 64, 175, 0.2);
         }
 
         * {
@@ -28,21 +32,22 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background: var(--bg);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .header {
-            background: var(--primary);
-            border-bottom: 2px solid var(--accent);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-bottom: none;
             padding: 1.5rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(230, 57, 70, 0.1);
+            box-shadow: 0 4px 20px var(--shadow);
         }
 
         .header-content {
@@ -57,18 +62,18 @@
             font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: -0.5px;
-            color: var(--text);
+            color: #ffffff;
         }
 
         .logo span {
-            color: var(--accent);
+            color: #e0e7ff;
         }
 
         .stats {
             display: flex;
             gap: 2rem;
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.9);
             font-family: 'JetBrains Mono', monospace;
         }
 
@@ -87,17 +92,18 @@
         .selector-section {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px var(--shadow);
+            backdrop-filter: blur(10px);
         }
 
         .selector-title {
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            color: var(--accent);
+            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -127,16 +133,16 @@
         .car-selector select {
             width: 100%;
             padding: 0.9rem 1.2rem;
-            background: var(--secondary);
+            background: var(--bg-light);
             border: 2px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text);
             font-size: 1rem;
             font-family: 'Outfit', sans-serif;
             cursor: pointer;
             transition: all 0.3s ease;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e63946' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 0.7rem center;
             background-size: 1.2rem;
@@ -145,22 +151,23 @@
 
         .car-selector select:hover {
             border-color: var(--accent);
-            background: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 2px 8px var(--shadow);
         }
 
         .car-selector select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
         .compare-button {
             margin-top: 1.5rem;
             width: 100%;
             padding: 1.2rem;
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             color: white;
             font-size: 1.1rem;
             font-weight: 600;
@@ -168,12 +175,13 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+            box-shadow: 0 4px 15px var(--shadow);
         }
 
         .compare-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(230, 57, 70, 0.4);
+            box-shadow: 0 6px 25px var(--shadow-hover);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
         }
 
         .comparison-grid {
@@ -186,9 +194,9 @@
         .car-card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px var(--shadow);
             transition: all 0.3s ease;
             animation: slideUp 0.5s ease-out;
         }
@@ -206,42 +214,44 @@
 
         .car-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 40px rgba(230, 57, 70, 0.2);
+            box-shadow: 0 8px 30px var(--shadow-hover);
+            border-color: var(--accent);
         }
 
         .car-header {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             padding: 2rem;
-            border-bottom: 2px solid var(--accent);
+            border-bottom: none;
         }
 
         .car-name {
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 0.3rem;
-            color: var(--text);
+            color: #ffffff;
         }
 
         .car-year {
             font-size: 1rem;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.9);
             font-family: 'JetBrains Mono', monospace;
         }
 
         .car-brand {
             display: inline-block;
-            background: var(--secondary);
+            background: rgba(255, 255, 255, 0.2);
             padding: 0.3rem 0.7rem;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 0.85rem;
             margin-top: 0.5rem;
-            color: var(--highlight);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
         }
 
         .car-price {
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--highlight);
+            color: #ffffff;
             margin-top: 1rem;
             font-family: 'JetBrains Mono', monospace;
         }
@@ -261,10 +271,10 @@
         .category-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--primary);
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--border);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -275,7 +285,7 @@
             justify-content: space-between;
             align-items: flex-start;
             padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(58, 58, 58, 0.5);
+            border-bottom: 1px solid var(--border);
         }
 
         .spec-row:last-child {
@@ -291,8 +301,8 @@
 
         .spec-value {
             font-size: 0.95rem;
-            color: var(--text);
-            font-weight: 500;
+            color: var(--primary);
+            font-weight: 600;
             text-align: right;
             flex: 1;
             font-family: 'JetBrains Mono', monospace;
@@ -322,9 +332,10 @@
         .data-source {
             margin-top: 1rem;
             padding: 1rem;
-            background: rgba(255, 201, 20, 0.1);
-            border-radius: 8px;
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 10px;
             font-size: 0.85rem;
+            border: 1px solid var(--border);
         }
 
         @media (max-width: 768px) {
