@@ -240,14 +240,14 @@
         }
 
         .car-brand {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.3rem 0.7rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            color: #ffffff;
-            backdrop-filter: blur(10px);
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'Outfit', sans-serif;
         }
 
         .car-price {
@@ -21231,9 +21231,9 @@
             return `
                 <div class="car-card" style="animation-delay: ${index * 0.1}s">
                     <div class="car-header">
+                        <div class="car-brand">${car.brand}</div>
                         <div class="car-name">${car.name}</div>
                         <div class="car-year">${car.year} • ${car.trim}</div>
-                        <div class="car-brand">${car.brand}</div>
                         <div class="car-price">${car.msrp}</div>
                     </div>
                     <div class="specs-section">
