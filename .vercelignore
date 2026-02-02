@@ -1,0 +1,11 @@
+# Don't deploy these files to Vercel
+*.py
+__pycache__/
+*.json
+!vercel.json
+*.md
+!README.md
+*.txt
+car-comparison-with-admin.html
+CarCompare-SingleFile.html
+final-car-comparison-site.html
