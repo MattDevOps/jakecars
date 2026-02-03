@@ -365,7 +365,79 @@
             }
         }
     
-        .trim-selector {
+        
+        .vehicle-selector-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .vehicle-selector-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vehicle-selector-group select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+            padding-right: 2rem;
+        }
+
+        .vehicle-selector-group select:hover {
+            border-color: var(--accent);
+            background-color: #ffffff;
+        }
+
+        .vehicle-selector-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .vehicle-selector-group select:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .selector-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 500px) {
+            .selector-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .car-trim {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+.trim-selector {
             margin: 0.8rem 0;
             padding: 0.8rem;
             background: rgba(37, 99, 235, 0.1);
@@ -23712,6 +23784,7 @@
 };
 
         let selectedCars = [];
+        let selectedYears = {};
         let selectedTrims = {};
 
         function initializePage() {
@@ -23728,126 +23801,226 @@
             document.getElementById('brandCount').textContent = `${brands.size} Brands`;
         }
 
-        // Group cars by brand and model (for dropdown - no trims)
-        function getCarModels() {
-            const modelsByBrand = {};
+        // Build a structured index of all cars
+        function getCarIndex() {
+            const index = {};
             
             Object.entries(carDatabase).forEach(([key, car]) => {
-                if (!modelsByBrand[car.brand]) {
-                    modelsByBrand[car.brand] = {};
-                }
+                const brand = car.brand;
+                const name = car.name;
+                const year = car.year;
+                const trim = car.trim;
                 
-                // Create a model key (brand + name)
-                const modelKey = `${car.brand}|${car.name}`;
+                if (!index[brand]) index[brand] = {};
+                if (!index[brand][name]) index[brand][name] = {};
+                if (!index[brand][name][year]) index[brand][name][year] = [];
                 
-                if (!modelsByBrand[car.brand][car.name]) {
-                    modelsByBrand[car.brand][car.name] = {
-                        name: car.name,
-                        brand: car.brand,
-                        year: car.year,
-                        trims: []
-                    };
-                }
-                
-                // Add this trim
-                modelsByBrand[car.brand][car.name].trims.push({
+                index[brand][name][year].push({
                     key: key,
-                    trim: car.trim,
+                    trim: trim,
                     msrp: car.msrp,
                     car: car
                 });
             });
             
-            return modelsByBrand;
+            return index;
         }
 
         function createCarSelectors(count) {
             const grid = document.getElementById('selectorGrid');
             grid.innerHTML = '';
             
-            const modelsByBrand = getCarModels();
+            const carIndex = getCarIndex();
             
             for (let i = 0; i < count; i++) {
                 const selectorDiv = document.createElement('div');
                 selectorDiv.className = 'car-selector';
                 
-                let options = '<option value="">-- Select a vehicle --</option>';
-                Object.keys(modelsByBrand).sort().forEach(brand => {
-                    options += `<optgroup label="${brand}">`;
-                    Object.keys(modelsByBrand[brand]).sort().forEach(modelName => {
-                        const model = modelsByBrand[brand][modelName];
+                // Build model options grouped by brand (just model name, no brand prefix)
+                let modelOptions = '<option value="">-- Select Model --</option>';
+                Object.keys(carIndex).sort().forEach(brand => {
+                    modelOptions += `<optgroup label="${brand}">`;
+                    Object.keys(carIndex[brand]).sort().forEach(modelName => {
                         const modelValue = `${brand}|${modelName}`;
-                        options += `<option value="${modelValue}">${model.year} ${brand} ${modelName}</option>`;
+                        modelOptions += `<option value="${modelValue}">${modelName}</option>`;
                     });
-                    options += `</optgroup>`;
+                    modelOptions += `</optgroup>`;
                 });
                 
                 selectorDiv.innerHTML = `
                     <label>Vehicle ${i + 1}</label>
-                    <select id="car-select-${i}" onchange="updateSelection(${i}, this.value)">
-                        ${options}
-                    </select>
+                    <div class="vehicle-selector-group">
+                        <div class="selector-row">
+                            <div>
+                                <label>Model</label>
+                                <select id="model-select-${i}" onchange="onModelChange(${i}, this.value)">
+                                    ${modelOptions}
+                                </select>
+                            </div>
+                            <div>
+                                <label>Year</label>
+                                <select id="year-select-${i}" onchange="onYearChange(${i}, this.value)" disabled>
+                                    <option value="">Year</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Trim (Optional)</label>
+                                <select id="trim-select-${i}" onchange="onTrimChange(${i}, this.value)" disabled>
+                                    <option value="">All Trims</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 `;
                 grid.appendChild(selectorDiv);
             }
         }
 
-        function updateSelection(index, modelKey) {
-            selectedCars[index] = modelKey || null;
-            // Reset trim selection when model changes
+        function onModelChange(index, modelValue) {
+            const carIndex = getCarIndex();
+            const yearSelect = document.getElementById(`year-select-${index}`);
+            const trimSelect = document.getElementById(`trim-select-${index}`);
+            
+            // Reset dependent dropdowns
+            yearSelect.innerHTML = '<option value="">Year</option>';
+            trimSelect.innerHTML = '<option value="">All Trims</option>';
+            yearSelect.disabled = true;
+            trimSelect.disabled = true;
+            selectedYears[index] = null;
             selectedTrims[index] = null;
+            
+            if (!modelValue) {
+                selectedCars[index] = null;
+                return;
+            }
+            
+            selectedCars[index] = modelValue;
+            const [brand, modelName] = modelValue.split('|');
+            
+            // Populate years
+            const years = Object.keys(carIndex[brand][modelName]).sort().reverse();
+            years.forEach(year => {
+                yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+            });
+            yearSelect.disabled = false;
+            
+            // Auto-select if only one year
+            if (years.length === 1) {
+                yearSelect.value = years[0];
+                onYearChange(index, years[0]);
+            }
         }
 
-        function updateTrimSelection(index, trimKey) {
-            selectedTrims[index] = trimKey;
-            // Re-render comparison to update the card
-            compareVehicles();
+        function onYearChange(index, year) {
+            const carIndex = getCarIndex();
+            const trimSelect = document.getElementById(`trim-select-${index}`);
+            
+            trimSelect.innerHTML = '<option value="">All Trims</option>';
+            trimSelect.disabled = true;
+            selectedTrims[index] = null;
+            
+            if (!year || !selectedCars[index]) {
+                selectedYears[index] = null;
+                return;
+            }
+            
+            selectedYears[index] = year;
+            const [brand, modelName] = selectedCars[index].split('|');
+            
+            // Populate trims
+            const trims = carIndex[brand][modelName][year];
+            trims.forEach(t => {
+                trimSelect.innerHTML += `<option value="${t.key}">${t.trim} - ${t.msrp}</option>`;
+            });
+            trimSelect.disabled = false;
+            
+            // Auto-select if only one trim
+            if (trims.length === 1) {
+                trimSelect.value = trims[0].key;
+                selectedTrims[index] = trims[0].key;
+            }
+        }
+
+        function onTrimChange(index, trimKey) {
+            selectedTrims[index] = trimKey || null;
         }
 
         function compareVehicles() {
             const comparisonArea = document.getElementById('comparisonArea');
-            const validCars = selectedCars.filter(car => car);
+            const carIndex = getCarIndex();
             
-            if (validCars.length === 0) {
+            // Build list of cars to compare
+            const carsToCompare = [];
+            
+            for (let i = 0; i < 4; i++) {
+                const modelValue = selectedCars[i];
+                const year = selectedYears[i];
+                
+                if (!modelValue || !year) continue;
+                
+                const [brand, modelName] = modelValue.split('|');
+                const trims = carIndex[brand][modelName][year];
+                const selectedTrimKey = selectedTrims[i];
+                
+                if (selectedTrimKey) {
+                    // Specific trim selected
+                    const trimData = trims.find(t => t.key === selectedTrimKey);
+                    if (trimData) {
+                        carsToCompare.push({
+                            index: i,
+                            car: trimData.car,
+                            trims: trims,
+                            selectedTrimKey: selectedTrimKey
+                        });
+                    }
+                } else {
+                    // No trim selected - show first trim but allow switching
+                    carsToCompare.push({
+                        index: i,
+                        car: trims[0].car,
+                        trims: trims,
+                        selectedTrimKey: trims[0].key
+                    });
+                }
+            }
+            
+            if (carsToCompare.length === 0) {
                 comparisonArea.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-state-icon">🏁</div>
                         <h2>Select vehicles above to start comparing</h2>
-                        <p>Choose 2-4 vehicles from our database to see detailed side-by-side specifications</p>
+                        <p>Choose a model and year for at least one vehicle to see specifications</p>
                     </div>
                 `;
                 return;
             }
 
-            const modelsByBrand = getCarModels();
-
-            comparisonArea.innerHTML = validCars.map((modelKey, displayIndex) => {
-                // Find the actual index in selectedCars
-                const actualIndex = selectedCars.indexOf(modelKey);
-                const [brand, modelName] = modelKey.split('|');
-                const model = modelsByBrand[brand][modelName];
-                
-                // Get selected trim or default to first
-                let selectedTrimKey = selectedTrims[actualIndex];
-                let selectedTrimData = model.trims.find(t => t.key === selectedTrimKey);
-                
-                if (!selectedTrimData) {
-                    selectedTrimData = model.trims[0];
-                    selectedTrims[actualIndex] = selectedTrimData.key;
-                }
-                
-                return createCarCard(model, selectedTrimData, actualIndex, displayIndex);
+            comparisonArea.innerHTML = carsToCompare.map((item, displayIndex) => {
+                return createCarCard(item.car, item.trims, item.index, displayIndex, item.selectedTrimKey);
             }).join('');
         }
 
-        function createCarCard(model, selectedTrimData, actualIndex, displayIndex) {
-            const car = selectedTrimData.car;
-            
-            // Create trim selector options
-            let trimOptions = model.trims.map(t => {
-                const selected = t.key === selectedTrimData.key ? 'selected' : '';
+        function updateCardTrim(selectorIndex, trimKey) {
+            selectedTrims[selectorIndex] = trimKey;
+            compareVehicles();
+        }
+
+        function createCarCard(car, availableTrims, selectorIndex, displayIndex, selectedTrimKey) {
+            // Create trim selector options for the card
+            let trimOptions = availableTrims.map(t => {
+                const selected = t.key === selectedTrimKey ? 'selected' : '';
                 return `<option value="${t.key}" ${selected}>${t.trim} - ${t.msrp}</option>`;
             }).join('');
+            
+            // Only show trim selector if multiple trims available
+            const trimSelectorHtml = availableTrims.length > 1 ? `
+                <div class="trim-selector">
+                    <label>Select Trim:</label>
+                    <select onchange="updateCardTrim(${selectorIndex}, this.value)">
+                        ${trimOptions}
+                    </select>
+                </div>
+            ` : `<div class="car-trim">${car.trim}</div>`;
             
             return `
                 <div class="car-card" style="animation-delay: ${displayIndex * 0.1}s">
@@ -23855,12 +24028,7 @@
                         <div class="car-brand">${car.brand}</div>
                         <div class="car-name">${car.name}</div>
                         <div class="car-year">${car.year}</div>
-                        <div class="trim-selector">
-                            <label>Select Trim:</label>
-                            <select onchange="updateTrimSelection(${actualIndex}, this.value)">
-                                ${trimOptions}
-                            </select>
-                        </div>
+                        ${trimSelectorHtml}
                         <div class="car-price">${car.msrp}</div>
                     </div>
                     <div class="specs-section">
