@@ -364,6 +364,47 @@
                 gap: 0.5rem;
             }
         }
+    
+        .trim-selector {
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 8px;
+        }
+
+        .trim-selector label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .trim-selector select {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .trim-selector select:hover {
+            border-color: var(--accent);
+        }
+
+        .trim-selector select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
     </style>
 </head>
 <body>
@@ -23671,6 +23712,7 @@
 };
 
         let selectedCars = [];
+        let selectedTrims = {};
 
         function initializePage() {
             updateStats();
@@ -23686,28 +23728,56 @@
             document.getElementById('brandCount').textContent = `${brands.size} Brands`;
         }
 
+        // Group cars by brand and model (for dropdown - no trims)
+        function getCarModels() {
+            const modelsByBrand = {};
+            
+            Object.entries(carDatabase).forEach(([key, car]) => {
+                if (!modelsByBrand[car.brand]) {
+                    modelsByBrand[car.brand] = {};
+                }
+                
+                // Create a model key (brand + name)
+                const modelKey = `${car.brand}|${car.name}`;
+                
+                if (!modelsByBrand[car.brand][car.name]) {
+                    modelsByBrand[car.brand][car.name] = {
+                        name: car.name,
+                        brand: car.brand,
+                        year: car.year,
+                        trims: []
+                    };
+                }
+                
+                // Add this trim
+                modelsByBrand[car.brand][car.name].trims.push({
+                    key: key,
+                    trim: car.trim,
+                    msrp: car.msrp,
+                    car: car
+                });
+            });
+            
+            return modelsByBrand;
+        }
+
         function createCarSelectors(count) {
             const grid = document.getElementById('selectorGrid');
             grid.innerHTML = '';
             
-            // Group cars by brand for better organization
-            const carsByBrand = {};
-            Object.entries(carDatabase).forEach(([key, car]) => {
-                if (!carsByBrand[car.brand]) {
-                    carsByBrand[car.brand] = [];
-                }
-                carsByBrand[car.brand].push({ key, car });
-            });
+            const modelsByBrand = getCarModels();
             
             for (let i = 0; i < count; i++) {
                 const selectorDiv = document.createElement('div');
                 selectorDiv.className = 'car-selector';
                 
                 let options = '<option value="">-- Select a vehicle --</option>';
-                Object.keys(carsByBrand).sort().forEach(brand => {
+                Object.keys(modelsByBrand).sort().forEach(brand => {
                     options += `<optgroup label="${brand}">`;
-                    carsByBrand[brand].forEach(({ key, car }) => {
-                        options += `<option value="${key}">${car.year} ${car.name} ${car.trim} - ${car.msrp}</option>`;
+                    Object.keys(modelsByBrand[brand]).sort().forEach(modelName => {
+                        const model = modelsByBrand[brand][modelName];
+                        const modelValue = `${brand}|${modelName}`;
+                        options += `<option value="${modelValue}">${model.year} ${brand} ${modelName}</option>`;
                     });
                     options += `</optgroup>`;
                 });
@@ -23722,8 +23792,16 @@
             }
         }
 
-        function updateSelection(index, carKey) {
-            selectedCars[index] = carKey || null;
+        function updateSelection(index, modelKey) {
+            selectedCars[index] = modelKey || null;
+            // Reset trim selection when model changes
+            selectedTrims[index] = null;
+        }
+
+        function updateTrimSelection(index, trimKey) {
+            selectedTrims[index] = trimKey;
+            // Re-render comparison to update the card
+            compareVehicles();
         }
 
         function compareVehicles() {
@@ -23741,19 +23819,48 @@
                 return;
             }
 
-            comparisonArea.innerHTML = validCars.map((carKey, index) => {
-                const car = carDatabase[carKey];
-                return createCarCard(car, index);
+            const modelsByBrand = getCarModels();
+
+            comparisonArea.innerHTML = validCars.map((modelKey, displayIndex) => {
+                // Find the actual index in selectedCars
+                const actualIndex = selectedCars.indexOf(modelKey);
+                const [brand, modelName] = modelKey.split('|');
+                const model = modelsByBrand[brand][modelName];
+                
+                // Get selected trim or default to first
+                let selectedTrimKey = selectedTrims[actualIndex];
+                let selectedTrimData = model.trims.find(t => t.key === selectedTrimKey);
+                
+                if (!selectedTrimData) {
+                    selectedTrimData = model.trims[0];
+                    selectedTrims[actualIndex] = selectedTrimData.key;
+                }
+                
+                return createCarCard(model, selectedTrimData, actualIndex, displayIndex);
             }).join('');
         }
 
-        function createCarCard(car, index) {
+        function createCarCard(model, selectedTrimData, actualIndex, displayIndex) {
+            const car = selectedTrimData.car;
+            
+            // Create trim selector options
+            let trimOptions = model.trims.map(t => {
+                const selected = t.key === selectedTrimData.key ? 'selected' : '';
+                return `<option value="${t.key}" ${selected}>${t.trim} - ${t.msrp}</option>`;
+            }).join('');
+            
             return `
-                <div class="car-card" style="animation-delay: ${index * 0.1}s">
+                <div class="car-card" style="animation-delay: ${displayIndex * 0.1}s">
                     <div class="car-header">
                         <div class="car-brand">${car.brand}</div>
                         <div class="car-name">${car.name}</div>
-                        <div class="car-year">${car.year} • ${car.trim}</div>
+                        <div class="car-year">${car.year}</div>
+                        <div class="trim-selector">
+                            <label>Select Trim:</label>
+                            <select onchange="updateTrimSelection(${actualIndex}, this.value)">
+                                ${trimOptions}
+                            </select>
+                        </div>
                         <div class="car-price">${car.msrp}</div>
                     </div>
                     <div class="specs-section">
