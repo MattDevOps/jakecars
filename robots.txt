@@ -1,0 +1,15 @@
+# JakeCars - robots.txt
+# https://jakecars.com
+
+User-agent: *
+Allow: /
+Disallow: /temp/
+Disallow: /*.json$
+Disallow: /*.py$
+Disallow: /*.txt$
+
+# Sitemaps
+Sitemap: https://jakecars.com/sitemap.xml
+
+# Crawl-delay (optional, be polite to crawlers)
+Crawl-delay: 1
