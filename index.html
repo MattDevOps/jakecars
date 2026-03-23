@@ -765,6 +765,90 @@
             font-size: 0.8rem;
         }
 
+        /* ===== DARK MODE ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary: #e2e8f0;
+                --primary-light: #cbd5e1;
+                --accent: #60a5fa;
+                --accent-light: #93c5fd;
+                --accent-dark: #3b82f6;
+                --text: #e2e8f0;
+                --text-muted: #94a3b8;
+                --text-light: #64748b;
+                --border: #334155;
+                --border-light: #1e293b;
+                --bg: #0f172a;
+                --bg-light: #1e293b;
+                --bg-dark: #020617;
+                --card: #1e293b;
+                --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+                --shadow: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
+                --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -4px rgba(0,0,0,0.3);
+                --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3);
+            }
+            .navbar.scrolled {
+                background: rgba(15,23,42,0.92);
+                border-bottom-color: var(--border);
+            }
+            .navbar.scrolled .nav-logo { color: var(--text); }
+            .navbar.scrolled .nav-links a { color: var(--text-muted); }
+            .navbar.scrolled .nav-links a:hover { color: var(--accent-light); }
+            .navbar.scrolled .nav-stats { color: var(--text-muted); }
+            .hero::after {
+                background: linear-gradient(to top, var(--bg), transparent);
+            }
+            .feature-card {
+                background: var(--card);
+                border-color: var(--border);
+            }
+            .feature-card:hover {
+                border-color: var(--accent);
+            }
+            .brand-pill {
+                background: var(--card);
+                border-color: var(--border);
+                color: var(--text);
+            }
+            .selector-panel {
+                background: var(--card);
+                border-color: var(--border);
+            }
+            .car-selector {
+                background: var(--bg);
+                border-color: var(--border);
+            }
+            .field-group select {
+                background-color: var(--bg);
+                border-color: var(--border);
+                color: var(--text);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            }
+            .field-group select:disabled {
+                background-color: var(--bg-light);
+            }
+            .field-group select:focus {
+                box-shadow: 0 0 0 3px rgba(96,165,250,0.2);
+            }
+            .car-card {
+                background: var(--card);
+                border-color: var(--border);
+            }
+            .trim-selector select option {
+                color: var(--text);
+                background: var(--card);
+            }
+            .category-title {
+                background: rgba(96,165,250,0.1);
+            }
+            .spec-row {
+                border-bottom-color: var(--border-light);
+            }
+            .site-footer {
+                background: var(--bg-dark);
+            }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -148046,7 +148130,7 @@
                 opt.value = year;
                 opt.textContent = available ? year : `${year} (N/A)`;
                 opt.disabled = !available;
-                if (!available) opt.style.color = '#666';
+                if (!available) opt.style.color = 'var(--text-light)';
                 yearSelect.appendChild(opt);
             });
             yearSelect.disabled = false;
